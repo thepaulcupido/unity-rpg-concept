@@ -4,20 +4,34 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
     [SerializeField]
     private Rigidbody2D rigidBody;
-
     [SerializeField]
     private float movementSpeed;
-
     [SerializeField]
     private Animator anim;
 
 
+    [SerializeField]
+    private string areaTransitionId;
+    public string AreaTransitionId
+    {
+        get { return areaTransitionId; }
+        set { areaTransitionId = value; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        if (instance == null) {
+            instance = this;
+        } else {
+            Destroy(gameObject);
+        }
         
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
