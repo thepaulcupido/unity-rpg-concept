@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Animator anim;
 
-
     [SerializeField]
     private string areaTransitionId;
     public string AreaTransitionId

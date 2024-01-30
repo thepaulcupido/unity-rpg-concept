@@ -358,5 +358,17 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 5172958636355164413, guid: 145e3c321b8e42949b84674892c67569, type: 3}
+      propertyPath: areaTransitionId
+      value: countryside_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213320045674291485, guid: 145e3c321b8e42949b84674892c67569, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213320045674291485, guid: 145e3c321b8e42949b84674892c67569, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.94
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 145e3c321b8e42949b84674892c67569, type: 3}
