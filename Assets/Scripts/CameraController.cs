@@ -20,8 +20,18 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         this.mapLimitTopRight = this.sceneTileMap.localBounds.max;
         this.mapLimitBottomLeft = this.sceneTileMap.localBounds.min;
+
+        if (PlayerController.instance != null && target == null) {
+            // Centering the camera on the player
+            target = PlayerController.instance.transform;
+            //Setting Bounds for the player
+            PlayerController.instance.SetBounds(this.mapLimitTopRight, this.mapLimitBottomLeft);
+        } else {
+            Debug.Log("Player does not exist and target is empty");
+        }
 
         if (Camera.main != null) {
             this.halfCameraHeight = Camera.main.orthographicSize;
@@ -34,17 +44,14 @@ public class CameraController : MonoBehaviour
             Debug.Log("Main camera is not tagged as 'MainCamera' in the scene.");
         }
 
-        
-        if (PlayerController.instance != null && target == null) {
-            // Centering the camera on the player
-            target = PlayerController.instance.transform;
-        }
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
+        if (target != null) {
+            transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
+        }
 
         // Keeps the camera inside the bounds of the screen
         transform.position = new Vector3(
