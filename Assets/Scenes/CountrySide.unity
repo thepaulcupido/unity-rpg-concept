@@ -14476,6 +14476,67 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &306738054
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6410951869028151549, guid: df4374c009ef0d849bd58d3702ac2b65, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6410951869028151549, guid: df4374c009ef0d849bd58d3702ac2b65, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 31.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6410951869028151549, guid: df4374c009ef0d849bd58d3702ac2b65, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 6410951869028151549, guid: df4374c009ef0d849bd58d3702ac2b65, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.07278429
+      objectReference: {fileID: 0}
+    - target: {fileID: 6410951869028151549, guid: df4374c009ef0d849bd58d3702ac2b65, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6410951869028151549, guid: df4374c009ef0d849bd58d3702ac2b65, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6410951869028151549, guid: df4374c009ef0d849bd58d3702ac2b65, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6410951869028151549, guid: df4374c009ef0d849bd58d3702ac2b65, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6410951869028151549, guid: df4374c009ef0d849bd58d3702ac2b65, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6410951869028151549, guid: df4374c009ef0d849bd58d3702ac2b65, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6410951869028151549, guid: df4374c009ef0d849bd58d3702ac2b65, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7765224148692891224, guid: df4374c009ef0d849bd58d3702ac2b65, type: 3}
+      propertyPath: m_Name
+      value: AreaEntrance
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983157736688011549, guid: df4374c009ef0d849bd58d3702ac2b65, type: 3}
+      propertyPath: areaTransitionId
+      value: countryside_0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: df4374c009ef0d849bd58d3702ac2b65, type: 3}
 --- !u!1001 &869957059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14483,6 +14544,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 911292023688464941, guid: 513bd6a6c88e239439239c32bdf71bfb, type: 3}
+      propertyPath: sceneTileMap
+      value: 
+      objectReference: {fileID: 267681129}
     - target: {fileID: 911292023688464942, guid: 513bd6a6c88e239439239c32bdf71bfb, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -14531,8 +14596,77 @@ PrefabInstance:
       propertyPath: m_Name
       value: CustomCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 911292023688464945, guid: 513bd6a6c88e239439239c32bdf71bfb, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 513bd6a6c88e239439239c32bdf71bfb, type: 3}
+--- !u!1001 &1502687083
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2955440881217412790, guid: 145e3c321b8e42949b84674892c67569, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955440881217412790, guid: 145e3c321b8e42949b84674892c67569, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 36.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955440881217412790, guid: 145e3c321b8e42949b84674892c67569, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955440881217412790, guid: 145e3c321b8e42949b84674892c67569, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955440881217412790, guid: 145e3c321b8e42949b84674892c67569, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955440881217412790, guid: 145e3c321b8e42949b84674892c67569, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955440881217412790, guid: 145e3c321b8e42949b84674892c67569, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955440881217412790, guid: 145e3c321b8e42949b84674892c67569, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955440881217412790, guid: 145e3c321b8e42949b84674892c67569, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955440881217412790, guid: 145e3c321b8e42949b84674892c67569, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955440881217412790, guid: 145e3c321b8e42949b84674892c67569, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955440881217412791, guid: 145e3c321b8e42949b84674892c67569, type: 3}
+      propertyPath: areaToLoad
+      value: Town
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955440881217412791, guid: 145e3c321b8e42949b84674892c67569, type: 3}
+      propertyPath: areaTransitionId
+      value: town_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955440881217412792, guid: 145e3c321b8e42949b84674892c67569, type: 3}
+      propertyPath: m_Name
+      value: AreaExit
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 145e3c321b8e42949b84674892c67569, type: 3}
 --- !u!1 &1812294812
 GameObject:
   m_ObjectHideFlags: 0
