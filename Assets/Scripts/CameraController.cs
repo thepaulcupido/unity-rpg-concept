@@ -24,13 +24,10 @@ public class CameraController : MonoBehaviour
         this.mapLimitTopRight = this.sceneTileMap.localBounds.max;
         this.mapLimitBottomLeft = this.sceneTileMap.localBounds.min;
 
-        if (PlayerController.instance != null && target == null) {
-            // Centering the camera on the player
-            target = PlayerController.instance.transform;
-            //Setting Bounds for the player
+        if (PlayerController.instance != null) {
             PlayerController.instance.SetBounds(this.mapLimitTopRight, this.mapLimitBottomLeft);
         } else {
-            Debug.Log("Player does not exist and target is empty");
+            Debug.Log("Player does not exist at runtime: Start()");
         }
 
         if (Camera.main != null) {
@@ -49,10 +46,14 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (target != null) {
-            transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
+        if (PlayerController.instance != null && target == null) {
+            target = PlayerController.instance.transform;
+            PlayerController.instance.SetBounds(this.mapLimitTopRight, this.mapLimitBottomLeft);
+            Debug.Log("Player bounds and Camera target set at runtime: LateUpdate()");
         }
 
+        transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
+        
         // Keeps the camera inside the bounds of the screen
         transform.position = new Vector3(
             Mathf.Clamp(transform.position.x, this.mapLimitBottomLeft.x, this.mapLimitTopRight.x), 
