@@ -5,15 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class AreaExit : MonoBehaviour
 {
+    private bool loadAfterFade;
 
-    [SerializeField]
-    private string areaToLoad = "";
+    [SerializeField] private float loadingDelay = 1f;
 
-    [SerializeField]
-    private string areaTransitionId;
+    [SerializeField] private string areaToLoad = "";
 
-    [SerializeField]
-    private AreaEntrance entrance;
+    [SerializeField] private string areaTransitionId;
+
+    [SerializeField] private AreaEntrance entrance;
 
     // Start is called before the first frame update
     void Start()
@@ -24,14 +24,22 @@ public class AreaExit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (this.loadAfterFade) {
+            this.loadingDelay -= Time.deltaTime;
+            if (this.loadingDelay > 0) {
+                this.loadAfterFade = false;
+                SceneManager.LoadScene(this.areaToLoad);
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D otherObject)
     {
         if (otherObject.tag == "Player") {
             PlayerController.instance.AreaTransitionId =this.areaTransitionId;
-            SceneManager.LoadScene(this.areaToLoad);
+            
+            loadAfterFade = true;
+            UIFade.instance.FadeToBlack();
         }
     }
 }

@@ -14,14 +14,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 boundsBuffer = new Vector3(0.25f, 0.5f, 0f);
 
     // private serialized fields
-    [SerializeField]
-    private Rigidbody2D rigidBody;
-    [SerializeField]
-    private float movementSpeed;
-    [SerializeField]
-    private Animator anim;
-    [SerializeField]
-    private string areaTransitionId;
+    [SerializeField] private Rigidbody2D rigidBody;
+    [SerializeField] private float movementSpeed;
+    [SerializeField] private Animator anim;
+    [SerializeField] private string areaTransitionId;
     public string AreaTransitionId
     {
         get { return areaTransitionId; }

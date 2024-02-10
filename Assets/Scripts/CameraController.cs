@@ -13,8 +13,7 @@ public class CameraController : MonoBehaviour
     private float halfCameraWidth;
 
 
-    [SerializeField]
-    private Tilemap sceneTileMap;
+    [SerializeField] private Tilemap sceneTileMap;
 
 
     // Start is called before the first frame update

@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class AreaEntrance : MonoBehaviour
 {
-
-    [SerializeField]
-    private string areaTransitionId;
+    [SerializeField] private string areaTransitionId;
     public string AreaTransitionId
     {
         get { return areaTransitionId; }
