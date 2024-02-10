@@ -33,10 +33,6 @@ public class CameraController : MonoBehaviour
         if (Camera.main != null) {
             this.halfCameraHeight = Camera.main.orthographicSize;
             this.halfCameraWidth = this.halfCameraHeight * Camera.main.aspect;
-
-            //Setting the Camera limits in the context of the assigned TileMap and Camera size
-            this.mapLimitTopRight -=  new Vector3(this.halfCameraWidth, this.halfCameraHeight, 0f);
-            this.mapLimitBottomLeft += new Vector3(this.halfCameraWidth, this.halfCameraHeight, 0f);
         } else {
             Debug.Log("Main camera is not tagged as 'MainCamera' in the scene.");
         }
@@ -56,8 +52,8 @@ public class CameraController : MonoBehaviour
         
         // Keeps the camera inside the bounds of the screen
         transform.position = new Vector3(
-            Mathf.Clamp(transform.position.x, this.mapLimitBottomLeft.x, this.mapLimitTopRight.x), 
-            Mathf.Clamp(transform.position.y, this.mapLimitBottomLeft.y, this.mapLimitTopRight.y), 
+            Mathf.Clamp(transform.position.x, this.mapLimitBottomLeft.x + this.halfCameraWidth, this.mapLimitTopRight.x - this.halfCameraWidth), 
+            Mathf.Clamp(transform.position.y, this.mapLimitBottomLeft.y + this.halfCameraHeight, this.mapLimitTopRight.y - this.halfCameraHeight), 
             transform.position.z
         );
     }
