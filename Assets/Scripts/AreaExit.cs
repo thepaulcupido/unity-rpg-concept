@@ -7,7 +7,7 @@ public class AreaExit : MonoBehaviour
 {
     private bool loadAfterFade;
 
-    [SerializeField] private float loadingDelay = 1f;
+    [SerializeField] private float loadingDelay = 10f;
 
     [SerializeField] private string areaToLoad = "";
 
@@ -26,7 +26,7 @@ public class AreaExit : MonoBehaviour
     {
         if (this.loadAfterFade) {
             this.loadingDelay -= Time.deltaTime;
-            if (this.loadingDelay > 0) {
+            if (this.loadingDelay <= 0) {
                 this.loadAfterFade = false;
                 SceneManager.LoadScene(this.areaToLoad);
             }
@@ -38,8 +38,10 @@ public class AreaExit : MonoBehaviour
         if (otherObject.tag == "Player") {
             PlayerController.instance.AreaTransitionId =this.areaTransitionId;
             
-            loadAfterFade = true;
-            UIFade.instance.FadeToBlack();
+            this.loadAfterFade = true;
+            if (UIFade.instance != null) {
+                UIFade.instance.FadeToBlack();
+            }
         }
     }
 }

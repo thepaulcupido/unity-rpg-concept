@@ -20,14 +20,12 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         
+        this.sceneTileMap.CompressBounds();
         this.mapLimitTopRight = this.sceneTileMap.localBounds.max;
         this.mapLimitBottomLeft = this.sceneTileMap.localBounds.min;
-
-        if (PlayerController.instance != null) {
-            PlayerController.instance.SetBounds(this.mapLimitTopRight, this.mapLimitBottomLeft);
-        } else {
-            Debug.Log("Player does not exist at runtime: Start()");
-        }
+  
+        Debug.Log("text - " + mapLimitTopRight);
+        Debug.Log("text - " + mapLimitBottomLeft);
 
         if (Camera.main != null) {
             this.halfCameraHeight = Camera.main.orthographicSize;
@@ -36,11 +34,19 @@ public class CameraController : MonoBehaviour
             Debug.Log("Main camera is not tagged as 'MainCamera' in the scene.");
         }
 
+        if (PlayerController.instance != null) {
+            PlayerController.instance.SetBounds(this.mapLimitTopRight, this.mapLimitBottomLeft);
+            target = PlayerController.instance.transform;
+        } else {
+            Debug.Log("Player does not exist at runtime: Start()");
+        }
+
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
+
         if (PlayerController.instance != null && target == null) {
             target = PlayerController.instance.transform;
             PlayerController.instance.SetBounds(this.mapLimitTopRight, this.mapLimitBottomLeft);

@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetBounds(Vector3 mapLimitTopRight, Vector3 mapLimitBottomLeft)
     {
-        this.mapLimitBottomLeft = mapLimitBottomLeft + this.boundsBuffer;
-        this.mapLimitTopRight = mapLimitTopRight - this.boundsBuffer;
+        this.mapLimitBottomLeft = mapLimitBottomLeft;
+        this.mapLimitTopRight = mapLimitTopRight;
     }
 }

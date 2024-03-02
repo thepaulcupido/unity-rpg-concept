@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 911292023688464941}
   m_Layer: 0
   m_Name: CustomCamera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,4 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b1c011cbd3a5c4ab6c47c9c9c60e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  sceneTileMap: {fileID: 0}

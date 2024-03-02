@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerLoader : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject player;
+    [SerializeField] private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
