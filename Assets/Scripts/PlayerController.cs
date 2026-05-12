@@ -1,23 +1,30 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
 
+    private Vector2 movement;
+
     [SerializeField] private Rigidbody2D playerRigidBody;
     [SerializeField] private float movementSpeed = 1.0f;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    // @Todo replace the movement system since this version has been marked for deprecation by Unity. The new system is called the Input System and can be found in the Package Manager.
     void Update()
     {
-        playerRigidBody.linearVelocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * movementSpeed;
+        movement = new Vector2(
+            Input.GetAxisRaw("Horizontal"), 
+            Input.GetAxisRaw("Vertical")
+            ).normalized;
+    }
+
+    void FixedUpdate()
+    {
+        //playerRigidBody.MovePosition(playerRigidBody.position + movement * movementSpeed * Time.fixedDeltaTime);
+        playerRigidBody.linearVelocity = movement * movementSpeed;
     }
 }
