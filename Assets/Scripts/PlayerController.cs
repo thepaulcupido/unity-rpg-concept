@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    // Private fields
     private Vector2 movement;
 
+    // Inspector-available fields
     [SerializeField] private Rigidbody2D playerRigidBody;
     [SerializeField] private float movementSpeed = 1.0f;
 
@@ -24,7 +25,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //playerRigidBody.MovePosition(playerRigidBody.position + movement * movementSpeed * Time.fixedDeltaTime);
         playerRigidBody.linearVelocity = movement * movementSpeed;
     }
 }
