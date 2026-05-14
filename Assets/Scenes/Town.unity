@@ -1868,7 +1868,7 @@ Transform:
   m_GameObject: {fileID: 492664886}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.4, y: 3.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1891,11 +1891,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6839789394281926865, guid: bcbeec717f241bd4b92811c8f560cffc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.6173
+      value: 2.76
       objectReference: {fileID: 0}
     - target: {fileID: 6839789394281926865, guid: bcbeec717f241bd4b92811c8f560cffc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.49771
+      value: -2.43
       objectReference: {fileID: 0}
     - target: {fileID: 6839789394281926865, guid: bcbeec717f241bd4b92811c8f560cffc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6614,6 +6614,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 2869894551544860613, guid: 4e8da838d7f082b4c8a2ae643efc959c, type: 3}
+    - target: {fileID: 3138767321918948411, guid: baf09539a42ecc140ad1305b647f752c, type: 3}
+      propertyPath: currentTileMap
+      value: 
+      objectReference: {fileID: 1785541408}
     - target: {fileID: 3451600362079410409, guid: baf09539a42ecc140ad1305b647f752c, type: 3}
       propertyPath: m_Name
       value: Custom Camera
@@ -6663,6 +6667,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baf09539a42ecc140ad1305b647f752c, type: 3}
+--- !u!1001 &1778079488
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991108256893963455, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_Name
+      value: AreaExit
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637154751312936124, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: areaToLoad
+      value: Countryside
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637154751312936124, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: areaTransitionName
+      value: Countryside
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813586429951032898, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813586429951032898, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.63
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
 --- !u!1 &1785541405
 GameObject:
   m_ObjectHideFlags: 0
@@ -19731,3 +19808,4 @@ SceneRoots:
   - {fileID: 1106986456}
   - {fileID: 1759144612}
   - {fileID: 492664888}
+  - {fileID: 1778079488}

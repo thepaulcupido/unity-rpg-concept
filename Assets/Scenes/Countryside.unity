@@ -18898,6 +18898,79 @@ Transform:
   - {fileID: 13738880}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &761342585
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 24.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991108256893963455, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_Name
+      value: AreaExit
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637154751312936124, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: areaToLoad
+      value: Town
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637154751312936124, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: areaTransitionName
+      value: Countryside
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813586429951032898, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813586429951032898, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.48
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
 --- !u!1001 &1143172617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18950,6 +19023,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6424689394289137521, guid: 4e8da838d7f082b4c8a2ae643efc959c, type: 3}
+      propertyPath: areaTransitionName
+      value: Town
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18963,6 +19040,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3138767321918948411, guid: baf09539a42ecc140ad1305b647f752c, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3138767321918948411, guid: baf09539a42ecc140ad1305b647f752c, type: 3}
       propertyPath: currentTileMap
       value: 
@@ -19023,3 +19104,4 @@ SceneRoots:
   - {fileID: 1217867981}
   - {fileID: 1143172617}
   - {fileID: 268905057}
+  - {fileID: 761342585}
