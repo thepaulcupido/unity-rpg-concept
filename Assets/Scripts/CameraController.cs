@@ -24,6 +24,8 @@ public class CameraController : MonoBehaviour
 
         bottomLeftMapLimit = currentTileMap.localBounds.min + halfCameraSize;
         topRightMapLimit = currentTileMap.localBounds.max - halfCameraSize;
+
+        PlayerController.instance.SetBounds(currentTileMap.localBounds.min, currentTileMap.localBounds.max);
     }
 
     void LateUpdate()
