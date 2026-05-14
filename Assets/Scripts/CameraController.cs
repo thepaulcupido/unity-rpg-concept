@@ -8,6 +8,9 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         target = PlayerController.instance.transform;
+        Debug.Log("Camera target set to player.");
+        Debug.Log("player instance: " + PlayerController.instance);
+        Debug.Log("player transform: " + target);
     }
 
     void LateUpdate()

@@ -150,4 +150,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f67a38be159b740bc2c2864de1f904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
-  target: {fileID: 0}
+  target: {fileID: 2869894551544860613, guid: 4e8da838d7f082b4c8a2ae643efc959c, type: 3}
