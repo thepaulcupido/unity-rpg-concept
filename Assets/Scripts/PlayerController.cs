@@ -16,8 +16,7 @@ public class PlayerController : AreaTransition
 
     void Start()
     {
-        // @todo this is a bit of a hack to make the player controller a singleton. It would be better to use a proper singleton pattern or a dependency injection framework to manage the player's dependencies.
-
+    
        if (instance == null)
         {
             instance = this;
@@ -26,6 +25,7 @@ public class PlayerController : AreaTransition
         {
             Destroy(gameObject);
         }
+
         DontDestroyOnLoad(gameObject);
     }
 

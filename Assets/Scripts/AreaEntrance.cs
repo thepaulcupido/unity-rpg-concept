@@ -3,12 +3,12 @@ using UnityEngine;
 public class AreaEntrance : AreaTransition
 {
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         string areaName = GetAreaTransitionName();
+        string playerAreaName = PlayerController.instance.GetAreaTransitionName();
 
-        if (areaName == PlayerController.instance.GetAreaTransitionName())
+        if (areaName == playerAreaName)
         {
             PlayerController.instance.transform.position = transform.position;
         }
