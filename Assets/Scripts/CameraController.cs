@@ -1,16 +1,29 @@
+using System;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class CameraController : MonoBehaviour
 {
 
+    private float halfCameraWidth;
+    private float halfCameraHeight;
+    private Vector3 bottomLeftMapLimit;
+    private Vector3 topRightMapLimit;
+
     [SerializeField] private Transform target;
+    [SerializeField] private Tilemap currentTileMap;
 
     void Start()
     {
         target = PlayerController.instance.transform;
-        Debug.Log("Camera target set to player.");
-        Debug.Log("player instance: " + PlayerController.instance);
-        Debug.Log("player transform: " + target);
+        
+        halfCameraWidth = Camera.main.orthographicSize * Camera.main.aspect;
+        halfCameraHeight = Camera.main.orthographicSize;
+
+        Vector3 halfCameraSize = new Vector3(halfCameraWidth, halfCameraHeight, 0);
+
+        bottomLeftMapLimit = currentTileMap.localBounds.min + halfCameraSize;
+        topRightMapLimit = currentTileMap.localBounds.max - halfCameraSize;
     }
 
     void LateUpdate()
@@ -18,6 +31,13 @@ public class CameraController : MonoBehaviour
         transform.position = new Vector3(
             target.position.x, 
             target.position.y, 
+            transform.position.z
+        );
+
+        // bound the camera to the tilemap bounds
+        transform.position = new Vector3(
+            Mathf.Clamp(transform.position.x, bottomLeftMapLimit.x, topRightMapLimit.x), 
+            Mathf.Clamp(transform.position.y, bottomLeftMapLimit.y, topRightMapLimit.y), 
             transform.position.z
         );
     }
