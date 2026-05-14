@@ -763,7 +763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7637154751312936124, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
       propertyPath: areaTransitionName
-      value: Countryside-1
+      value: countryside-2
       objectReference: {fileID: 0}
     - target: {fileID: 7813586429951032898, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
       propertyPath: m_LocalPosition.x

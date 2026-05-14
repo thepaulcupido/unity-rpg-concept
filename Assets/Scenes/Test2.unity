@@ -312,11 +312,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.31
+      value: -11.5
       objectReference: {fileID: 0}
     - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.43
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 1537808164256349391, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -352,7 +352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2052907630956571107, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
       propertyPath: areaTransitionName
-      value: 1-2
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4991108256893963455, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
       propertyPath: m_Name
@@ -360,15 +360,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7637154751312936124, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
       propertyPath: areaTransitionName
-      value: 1-2
+      value: countryside-2
       objectReference: {fileID: 0}
     - target: {fileID: 7813586429951032898, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.02
+      value: 1.33
       objectReference: {fileID: 0}
     - target: {fileID: 7813586429951032898, guid: 0d9f30478f87552439e8e460c61a62b1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.22
+      value: 0.17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
