@@ -41,12 +41,11 @@ public class DialogueManager : MonoBehaviour
                 {
                     if (currentLineIndex >= dialogueLines.Length)
                     {
+                        PlayerController.instance.EnableMovement();
+                        currentLineIndex = 0;
                         dialogueUI.SetActive(false);
                         speakerNameUI.SetActive(false);
-                        PlayerController.instance.EnableMovement();
-
-                        currentLineIndex = 0;
-                        ClearDialogueAndSpeakerText();
+                        
                         return;
                     }
                     CheckIfNameAndUpdateLine();
@@ -77,7 +76,7 @@ public class DialogueManager : MonoBehaviour
         ClearDialogueAndSpeakerText();
         CheckIfNameAndUpdateLine();
         dialogueText.text = dialogueLines[currentLineIndex];
-        currentLineIndex++;
+        //currentLineIndex++;
         
         dialogueUI.SetActive(true);
         speakerNameUI.SetActive(true);
