@@ -1,10 +1,12 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class PlayerController : AreaTransition
 {
     // Private fields
+    private bool canMove = true;
     private Vector2 movement;
     private Vector3 bottomLeftMapLimit;
     private Vector3 topRightMapLimit;
@@ -41,15 +43,19 @@ public class PlayerController : AreaTransition
 
     void FixedUpdate()
     {
-        playerRigidBody.linearVelocity = movement * movementSpeed;
+        playerRigidBody.linearVelocity = canMove ? movement * movementSpeed : Vector2.zero;
+        
         playerMovementAnimator.SetFloat("move_x", playerRigidBody.linearVelocity.x);
         playerMovementAnimator.SetFloat("move_y", playerRigidBody.linearVelocity.y);
 
         //@todo this is a bit of a hack to get the last movement direction for the idle animation. It would be better to use a state machine or something similar to keep track of the player's state and direction.
         if (Math.Abs(movement.x) == 1 || Math.Abs(movement.y) == 1)
         {
-            playerMovementAnimator.SetFloat("last_movement_x", movement.x);
-            playerMovementAnimator.SetFloat("last_movement_y", movement.y);
+            if (canMove)
+            {
+                playerMovementAnimator.SetFloat("last_movement_x", movement.x);
+                playerMovementAnimator.SetFloat("last_movement_y", movement.y);
+            }
         }
 
         transform.position = new Vector3(
@@ -63,5 +69,15 @@ public class PlayerController : AreaTransition
     {
         bottomLeftMapLimit = bottomLeft + new Vector3(0.5f, 0.5f, 0);
         topRightMapLimit = topRight - new Vector3(0.5f, 0.5f, 0);
+    }
+
+    public void DisableMovement()
+    {
+        canMove = false;
+    }
+    
+    public void EnableMovement()
+    {
+        canMove = true;
     }
 }
