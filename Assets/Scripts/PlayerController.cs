@@ -19,16 +19,14 @@ public class PlayerController : AreaTransition
 
     void Start()
     {
-    
-       if (instance == null)
+        if (instance != null && instance != this)        
         {
-            instance = this;
-        }
-        else
-        {
+            Debug.LogWarning("Multiple instances of Player detected. Destroying duplicate.");
             Destroy(gameObject);
+            return;
         }
 
+        instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
