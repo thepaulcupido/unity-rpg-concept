@@ -5,12 +5,13 @@ using UnityEngine.SceneManagement;
 public class AreaExit : AreaTransition
 {
 
+    // Private fields
+    private bool loadSceneAfterFade = false;
+
     // Serialized fields - these can be set in the Unity Inspector
-    [SerializeField] bool loadSceneAfterFade = false;
     [SerializeField] private float loadingTime = 1f;
     [SerializeField] private string areaToLoad;
     [SerializeField] private AreaEntrance areaEntrance;
-
 
     void Start()
     {
@@ -28,7 +29,6 @@ public class AreaExit : AreaTransition
             {
                 loadSceneAfterFade = false;
                 SceneManager.LoadScene(areaToLoad);
-               
             }
         }
     }

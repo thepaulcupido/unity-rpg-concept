@@ -16,17 +16,16 @@ public class UIFade : MonoBehaviour
     private bool fadeFromBlack = false;
 
 
-    void Start()
+    void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
+        if (instance != null && instance != this)        
         {
             Debug.LogWarning("Multiple instances of UIFade detected. Destroying duplicate.");
             Destroy(gameObject);
+            return;
         }
+
+        instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
