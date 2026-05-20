@@ -41,7 +41,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     if (currentLineIndex >= dialogueLines.Length)
                     {
-                        PlayerController.instance.EnableMovement();
+                        GameManager.instance.EndDialogue();
                         currentLineIndex = 0;
                         dialogueUI.SetActive(false);
                         speakerNameUI.SetActive(false);
@@ -80,7 +80,7 @@ public class DialogueManager : MonoBehaviour
         
         dialogueUI.SetActive(true);
         speakerNameUI.SetActive(isPerson);
-        PlayerController.instance.DisableMovement();
+        GameManager.instance.StartDialogue();
     }
 
     public GameObject DialogueUI => dialogueUI;

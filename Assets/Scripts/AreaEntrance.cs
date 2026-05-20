@@ -18,6 +18,7 @@ public class AreaEntrance : AreaTransition
         }
 
         UIFade.instance.StartFadeFromBlack();
+        GameManager.instance.EndAreaTransition();
     }
 
     // Update is called once per frame

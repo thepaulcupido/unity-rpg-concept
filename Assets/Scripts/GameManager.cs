@@ -4,6 +4,8 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
+
+    [SerializeField] private bool isGameMenuOpen, isDialogueActive, isMovingBetweenAreas;
     [SerializeField] CharacterStats[] playerStats;
 
     void Start()
@@ -22,6 +24,46 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isGameMenuOpen || isDialogueActive || isMovingBetweenAreas)
+        {
+            PlayerController.instance.DisableMovement();
+        }
+        else
+        {
+            PlayerController.instance.EnableMovement();
+        }
     }
+
+    // @todo - look into a modern event system to replace these methods.
+
+    public void OpenGameMenu()
+    {
+        isGameMenuOpen = true;
+    }
+
+    public void CloseGameMenu()
+    {
+        isGameMenuOpen = false;
+    }
+
+    public void StartDialogue()
+    {
+        isDialogueActive = true;
+    }
+
+    public void EndDialogue()
+    {
+        isDialogueActive = false;
+    }
+
+    public void StartAreaTransition()
+    {
+        isMovingBetweenAreas = true;
+    }
+
+    public void EndAreaTransition()
+    {
+        isMovingBetweenAreas = false;
+    }
+
 }

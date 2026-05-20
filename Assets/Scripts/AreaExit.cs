@@ -39,6 +39,7 @@ public class AreaExit : AreaTransition
         {
             loadSceneAfterFade = true;
             UIFade.instance.StartFadeToBlack();
+            GameManager.instance.StartAreaTransition();
 
             string areaName = GetAreaTransitionName();
             PlayerController.instance.SetAreaTransitionName(areaName);
