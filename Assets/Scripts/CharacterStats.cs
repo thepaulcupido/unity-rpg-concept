@@ -17,6 +17,7 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] private string characterName = "Tim";
     [SerializeField] private int characterLevel = 1;
     [SerializeField] private int characterHealth = 0;
+    [SerializeField] private int characterMagic = 0;
     [SerializeField] private int experiencePoints = 0;
     [SerializeField] private int gold = 0;
 
@@ -35,6 +36,7 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] private int maxLevel = 100;
     [SerializeField] private int baseExperience = 1000;
     [SerializeField] private int[] expToNextLevel;
+    [SerializeField] private int[] magicLevelBonusArray;
    
     void Start()
     {
@@ -43,6 +45,7 @@ public class CharacterStats : MonoBehaviour
             throw new System.ArgumentException("Max level must be at least 2.");
         }
 
+        magicLevelBonusArray = new int[maxLevel];
         expToNextLevel = new int[maxLevel];
         expToNextLevel[1] = baseExperience;
 
@@ -51,4 +54,46 @@ public class CharacterStats : MonoBehaviour
             expToNextLevel[i] = Mathf.FloorToInt(expToNextLevel[i - 1] * 1.05f);
         }
     }
+
+    public void AddExperience(int amount)
+    {
+        experiencePoints += amount;
+        if (characterLevel <= maxLevel)
+        {
+            CheckLevelUp();
+        }
+    }
+
+
+    public void CheckLevelUp()
+    {
+        if (characterLevel < maxLevel && experiencePoints >= expToNextLevel[characterLevel])
+        {
+            experiencePoints -= expToNextLevel[characterLevel];
+            characterLevel++;
+            UpdateStatsOnEevelUp();
+        }
+    }
+
+    /// <summary>
+    /// This method updates the character's stats when they level up. 
+    /// </summary>
+    public void UpdateStatsOnEevelUp()
+    {
+        maxHealth = Mathf.FloorToInt(maxHealth * 1.05f);
+        characterHealth = maxHealth;
+
+        maxMagic += magicLevelBonusArray[characterLevel];
+        characterMagic = maxMagic;
+
+        if (characterLevel % 2 == 0)
+        {
+            strength += 2;
+        } 
+        else
+        {
+            defence += 2;    
+        }
+
+    } 
 }
