@@ -96,4 +96,14 @@ public class CharacterStats : MonoBehaviour
         }
 
     } 
+
+    public string GetCharacterName() => characterName;
+    public int GetLevel() => characterLevel;
+    public int GetCurrentHP() => characterHealth;
+    public int GetMaxHP() => maxHealth;
+    public int GetCurrentMP() => characterMagic;
+    public int GetMaxMP() => maxMagic;
+    public int GetCurrentEXP() => experiencePoints;
+    public int GetExpToNextLevel() => expToNextLevel[characterLevel];
+    public Sprite GetCharacterImage() => characterImage;
 }

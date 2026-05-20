@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [SerializeField] private bool isGameMenuOpen, isDialogueActive, isMovingBetweenAreas;
-    [SerializeField] CharacterStats[] playerStats;
+    [SerializeField] private CharacterStats[] playerStats;
 
     void Start()
     {
@@ -64,6 +64,11 @@ public class GameManager : MonoBehaviour
     public void EndAreaTransition()
     {
         isMovingBetweenAreas = false;
+    }
+
+    public CharacterStats[] GetPlayerStats()
+    {
+        return playerStats;
     }
 
 }
