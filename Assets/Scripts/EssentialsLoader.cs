@@ -4,6 +4,7 @@ public class EssentialsLoader : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject UIScreen;
+    [SerializeField] private GameObject GameManagerObj;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,6 +20,11 @@ public class EssentialsLoader : MonoBehaviour
         {
             UIFade.instance = Instantiate(UIScreen).GetComponent<UIFade>();
             Debug.Log("UIFade instantiated.");
+        }
+        if (GameManager.instance == null)
+        {
+            GameManager.instance = Instantiate(GameManagerObj).GetComponent<GameManager>();
+            Debug.Log("GameManager instantiated.");
         }
     }
 

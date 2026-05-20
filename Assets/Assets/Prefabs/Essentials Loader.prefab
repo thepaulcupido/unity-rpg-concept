@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EssentiialsLoader
   player: {fileID: 4545446514826072191, guid: 4e8da838d7f082b4c8a2ae643efc959c, type: 3}
   UIScreen: {fileID: 2380205509819722594, guid: 14693a1f1721e164397968c2d47bd67b, type: 3}
+  GameManagerObj: {fileID: 5310086974027061858, guid: 77e6f3b4af6794742a081ebbfc1b1c82, type: 3}
