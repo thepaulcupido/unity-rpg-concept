@@ -5,6 +5,7 @@ public class DialogueActivator : MonoBehaviour
 {
 
     private bool canActivate = false;
+    [SerializeField] private bool isPerson = true;
     [SerializeField] private string[] lines;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,10 +20,10 @@ public class DialogueActivator : MonoBehaviour
             canActivate && 
             Input.GetButtonDown("Fire1") && 
             lines.Length > 0 && 
-            !DialogueManager.instance.DialogueUI.activeInHierarchy)
-            {
-                DialogueManager.instance.DisplayDialogue(lines);
-            }
+            !DialogueManager.instance.DialogueUI.activeInHierarchy
+        ) {
+            DialogueManager.instance.DisplayDialogue(lines, isPerson);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -70,7 +70,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void DisplayDialogue(string[] newLines)
+    public void DisplayDialogue(string[] newLines, bool isPerson)
     {
         dialogueLines = newLines;
         ClearDialogueAndSpeakerText();
@@ -79,7 +79,7 @@ public class DialogueManager : MonoBehaviour
         //currentLineIndex++;
         
         dialogueUI.SetActive(true);
-        speakerNameUI.SetActive(true);
+        speakerNameUI.SetActive(isPerson);
         PlayerController.instance.DisableMovement();
     }
 
