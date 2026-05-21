@@ -2,31 +2,29 @@ using UnityEngine;
 
 /// <summary>
 /// This class represents the stats of a character in the game. 
-/// It includes attributes such as health, strength, defence, and experience points. 
-/// It also includes information about the character's level, equipped weapon and armour, and their image.
-/// This class can be used to manage the character's stats and update them as the game progresses.
+/// 
+/// It includes the character's name, level, health, magic, experience points, gold, 
+/// strength, defence, weapon power, armour power, max health, max magic, 
+/// equipped weapon and armour, and character image.
+/// 
+/// It also includes methods to add experience points, check for level up, and update stats on level up.
 /// </summary>
 public class CharacterStats : MonoBehaviour
 {
 
-    /// <summary>
-    /// The character's name, level, health, experience points, gold, strength, 
-    /// defence, weapon power, armour power, max health, max magic, equipped weapon and armour, 
-    /// and character image are all defined as serialized fields.
-    /// </summary>
-    [SerializeField] private string characterName = "Tim";
-    [SerializeField] private int characterLevel = 1;
-    [SerializeField] private int characterHealth = 0;
-    [SerializeField] private int characterMagic = 0;
-    [SerializeField] private int experiencePoints = 0;
-    [SerializeField] private int gold = 0;
+    [SerializeField] private string characterName;
+    [SerializeField] private int characterLevel;
+    [SerializeField] private int characterHealth;
+    [SerializeField] private int characterMagic;
+    [SerializeField] private int experiencePoints;
+    [SerializeField] private int gold;
 
-    [SerializeField] private int strength = 15;
-    [SerializeField] private int defence = 12;
-    [SerializeField] private int weaponPower = 0;
-    [SerializeField] private int armourPower = 0;
-    [SerializeField] private int maxHealth = 100;
-    [SerializeField] private int maxMagic = 30;
+    [SerializeField] private int strength;
+    [SerializeField] private int defence;
+    [SerializeField] private int weaponPower;
+    [SerializeField] private int armourPower;
+    [SerializeField] private int maxHealth;
+    [SerializeField] private int maxMagic;
 
 
     [SerializeField] private string equippedWeapon = "";
@@ -53,8 +51,15 @@ public class CharacterStats : MonoBehaviour
         {
             expToNextLevel[i] = Mathf.FloorToInt(expToNextLevel[i - 1] * 1.05f);
         }
+
+        characterHealth = maxHealth;
+        characterMagic = maxMagic;
     }
 
+    /// <summary>
+    /// This method adds experience points to the character and checks if they have leveled up.
+    /// </summary>
+    /// <param name="amount"></param>
     public void AddExperience(int amount)
     {
         experiencePoints += amount;
@@ -65,20 +70,23 @@ public class CharacterStats : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// This method checks if the character has enough experience points to level up.
+    /// </summary>
     public void CheckLevelUp()
     {
         if (characterLevel < maxLevel && experiencePoints >= expToNextLevel[characterLevel])
         {
             experiencePoints -= expToNextLevel[characterLevel];
             characterLevel++;
-            UpdateStatsOnEevelUp();
+            UpdateStatsOnLevelUp();
         }
     }
 
     /// <summary>
     /// This method updates the character's stats when they level up. 
     /// </summary>
-    public void UpdateStatsOnEevelUp()
+    public void UpdateStatsOnLevelUp()
     {
         maxHealth = Mathf.FloorToInt(maxHealth * 1.05f);
         characterHealth = maxHealth;
@@ -97,6 +105,9 @@ public class CharacterStats : MonoBehaviour
 
     } 
 
+    /// <summary>
+    /// The following methods are getters for the character's stats. 
+    /// </summary>
     public string GetCharacterName() => characterName;
     public int GetLevel() => characterLevel;
     public int GetCurrentHP() => characterHealth;
