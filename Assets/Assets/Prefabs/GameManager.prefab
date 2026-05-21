@@ -58,7 +58,7 @@ MonoBehaviour:
   maxMagic: 30
   equippedWeapon: 
   equippedArmour: 
-  characterImage: {fileID: 0}
+  characterImage: {fileID: 7152930139536384079, guid: a6b95ff178401474dbb4aaf01bc90024, type: 3}
   maxLevel: 100
   baseExperience: 1000
   expToNextLevel: 
@@ -236,6 +236,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d232797f8cad4f1479422796351e8dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamaManager
+  isGameMenuOpen: 0
+  isDialogueActive: 0
+  isMovingBetweenAreas: 0
   playerStats:
   - {fileID: 250457246337121683}
   - {fileID: 146303231184986511}
