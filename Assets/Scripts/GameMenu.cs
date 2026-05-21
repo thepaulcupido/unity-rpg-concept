@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
 /// <summary>
 /// This class is responsible for managing the game menu, including displaying the player's stats and toggling the menu on and off.
 /// It retrieves the player stats from the GameManager and updates the UI elements accordingly when the menu is opened. 
@@ -10,12 +9,14 @@ using UnityEngine.UI;
 public class GameMenu : MonoBehaviour
 {
     [SerializeField] private GameObject gameMenuUI;
+    [SerializeField] private GameObject[] subMenuWindows;
+
     [SerializeField] private CharacterStats[] playerStats;
     [SerializeField] private Text[] nameText, mpText, hpText, expText, levelText;
     [SerializeField] private Image[] characterImage;
     [SerializeField] private Slider[] slider;
     [SerializeField] private GameObject[] characterStatsArray;
-  
+
     void Start()
     {
         gameMenuUI.SetActive(false);
@@ -68,7 +69,7 @@ public class GameMenu : MonoBehaviour
     {
         if (gameMenuUI.activeSelf)
         {
-            CloseGameMenu();
+            CloseAllSubMenus();
         }
         else
         {
@@ -93,5 +94,38 @@ public class GameMenu : MonoBehaviour
         UpdateMainStats();
         GameManager.instance.OpenGameMenu();
         gameMenuUI.SetActive(true);
+    }
+
+    /// <summary>
+    /// This method toggles the sub-menu windows within the game menu. It takes an integer parameter (windowNumber) that indicates which sub-menu window to display.
+    /// </summary>
+    /// <param name="windowNumber"></param>
+    public void ToggleWindow(int windowNumber)
+    {
+        for (int i = 0; i < subMenuWindows.Length; i++)
+        {
+            if (i == windowNumber)
+            {
+                subMenuWindows[i].SetActive(!subMenuWindows[i].activeInHierarchy);
+            } 
+            else
+            {
+                subMenuWindows[i].SetActive(false);
+            }
+        }
+    }
+
+    /// <summary>
+    /// This method closes all sub-menu windows and the main game menu. 
+    /// It is called when the player wants to exit the game menu and return to gameplay.
+    /// </summary>
+    public void CloseAllSubMenus()
+    {
+        for (int i = 0; i < subMenuWindows.Length; i++)
+        {
+            subMenuWindows[i].SetActive(false);
+        }
+
+        CloseGameMenu();
     }
 }
