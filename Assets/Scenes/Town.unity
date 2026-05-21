@@ -24714,23 +24714,23 @@ MonoBehaviour:
   - {fileID: 1987458464}
   - {fileID: 1708450897}
   mpText:
-  - {fileID: 1052264811}
   - {fileID: 1991732886}
   - {fileID: 1912287972}
+  - {fileID: 1052264811}
   hpText:
-  - {fileID: 183006093}
   - {fileID: 851492260}
   - {fileID: 1813415470}
+  - {fileID: 183006093}
   expText:
-  - {fileID: 2059898390}
-  - {fileID: 1360182298}
   - {fileID: 1093213271}
+  - {fileID: 1360182298}
+  - {fileID: 2059898390}
   levelText:
-  - {fileID: 391346614}
   - {fileID: 1606240355}
+  - {fileID: 391346614}
   - {fileID: 191697814}
   characterImage:
-  - {fileID: 117546380}
+  - {fileID: 1128105331}
   - {fileID: 1128105331}
   - {fileID: 113687252}
   slider:
@@ -24749,6 +24749,66 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 146303231184986511, guid: 77e6f3b4af6794742a081ebbfc1b1c82, type: 3}
+      propertyPath: maxLevel
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 146303231184986511, guid: 77e6f3b4af6794742a081ebbfc1b1c82, type: 3}
+      propertyPath: characterMagic
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 146303231184986511, guid: 77e6f3b4af6794742a081ebbfc1b1c82, type: 3}
+      propertyPath: characterHealth
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 146303231184986511, guid: 77e6f3b4af6794742a081ebbfc1b1c82, type: 3}
+      propertyPath: expToNextLevel.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 146303231184986511, guid: 77e6f3b4af6794742a081ebbfc1b1c82, type: 3}
+      propertyPath: 'expToNextLevel.Array.data[0]'
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 146303231184986511, guid: 77e6f3b4af6794742a081ebbfc1b1c82, type: 3}
+      propertyPath: 'expToNextLevel.Array.data[1]'
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 146303231184986511, guid: 77e6f3b4af6794742a081ebbfc1b1c82, type: 3}
+      propertyPath: 'expToNextLevel.Array.data[2]'
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 146303231184986511, guid: 77e6f3b4af6794742a081ebbfc1b1c82, type: 3}
+      propertyPath: 'expToNextLevel.Array.data[3]'
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 146303231184986511, guid: 77e6f3b4af6794742a081ebbfc1b1c82, type: 3}
+      propertyPath: 'expToNextLevel.Array.data[4]'
+      value: 4000
+      objectReference: {fileID: 0}
+    - target: {fileID: 146303231184986511, guid: 77e6f3b4af6794742a081ebbfc1b1c82, type: 3}
+      propertyPath: 'expToNextLevel.Array.data[5]'
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 146303231184986511, guid: 77e6f3b4af6794742a081ebbfc1b1c82, type: 3}
+      propertyPath: 'expToNextLevel.Array.data[6]'
+      value: 6000
+      objectReference: {fileID: 0}
+    - target: {fileID: 146303231184986511, guid: 77e6f3b4af6794742a081ebbfc1b1c82, type: 3}
+      propertyPath: 'expToNextLevel.Array.data[7]'
+      value: 7000
+      objectReference: {fileID: 0}
+    - target: {fileID: 146303231184986511, guid: 77e6f3b4af6794742a081ebbfc1b1c82, type: 3}
+      propertyPath: 'expToNextLevel.Array.data[8]'
+      value: 8000
+      objectReference: {fileID: 0}
+    - target: {fileID: 146303231184986511, guid: 77e6f3b4af6794742a081ebbfc1b1c82, type: 3}
+      propertyPath: 'expToNextLevel.Array.data[9]'
+      value: 9000
+      objectReference: {fileID: 0}
+    - target: {fileID: 250457246337121683, guid: 77e6f3b4af6794742a081ebbfc1b1c82, type: 3}
+      propertyPath: maxMagic
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 250457246337121683, guid: 77e6f3b4af6794742a081ebbfc1b1c82, type: 3}
       propertyPath: characterImage
       value: 
