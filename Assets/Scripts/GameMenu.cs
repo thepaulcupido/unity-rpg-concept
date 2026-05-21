@@ -1,6 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// This class is responsible for managing the game menu, including displaying the player's stats and toggling the menu on and off.
+/// It retrieves the player stats from the GameManager and updates the UI elements accordingly when the menu is opened. 
+/// It also checks for player input to toggle the menu and updates the GameManager to indicate whether the menu is open or closed.
+/// </summary>
 public class GameMenu : MonoBehaviour
 {
     [SerializeField] private GameObject gameMenuUI;
@@ -9,13 +15,12 @@ public class GameMenu : MonoBehaviour
     [SerializeField] private Image[] characterImage;
     [SerializeField] private Slider[] slider;
     [SerializeField] private GameObject[] characterStatsArray;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+  
     void Start()
     {
         gameMenuUI.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Fire2"))
@@ -24,6 +29,10 @@ public class GameMenu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This method updates the main stats of the player characters in the game menu.
+    /// It retrieves the player stats from the GameManager and updates the UI elements accordingly.
+    /// </summary>
     public void UpdateMainStats()
     {
         playerStats = GameManager.instance.GetPlayerStats();
@@ -50,17 +59,39 @@ public class GameMenu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This method toggles the game menu on and off. 
+    /// If the game menu is currently active, it will be closed. 
+    /// If it is currently inactive, it will be opened and the main stats will be updated.
+    /// </summary>
     public void ToggleGameMenu()
     {
         if (gameMenuUI.activeSelf)
         {
-            GameManager.instance.CloseGameMenu();
+            CloseGameMenu();
         }
         else
         {
-            UpdateMainStats();
-            GameManager.instance.OpenGameMenu();
+            OpenGameMenu();
         }
-        gameMenuUI.SetActive(!gameMenuUI.activeSelf);
+    }
+
+    /// <summary>
+    /// This method closes the game menu and updates the GameManager to indicate that the game menu is no longer open.
+    /// </summary>
+    public void CloseGameMenu()
+    {
+        GameManager.instance.CloseGameMenu();
+        gameMenuUI.SetActive(false);
+    }
+
+    /// <summary>
+    /// This method opens the game menu, updates the main stats, and updates the GameManager to indicate that the game menu is open.
+    /// </summary>
+    public void OpenGameMenu()
+    {
+        UpdateMainStats();
+        GameManager.instance.OpenGameMenu();
+        gameMenuUI.SetActive(true);
     }
 }

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// This class is responsible for managing the overall state of the game, including tracking whether the game menu is open, whether dialogue is active, and whether the player is moving between areas.
+/// </summary>
 public class GameManager : MonoBehaviour
 {
 
@@ -36,39 +39,15 @@ public class GameManager : MonoBehaviour
 
     // @todo - look into a modern event system to replace these methods.
 
-    public void OpenGameMenu()
-    {
-        isGameMenuOpen = true;
-    }
+    public void OpenGameMenu() => isGameMenuOpen = true;
+    public void CloseGameMenu() => isGameMenuOpen = false;
 
-    public void CloseGameMenu()
-    {
-        isGameMenuOpen = false;
-    }
+    public void StartDialogue() => isDialogueActive = true;
+    public void EndDialogue() => isDialogueActive = false;
 
-    public void StartDialogue()
-    {
-        isDialogueActive = true;
-    }
+    public void StartAreaTransition() => isMovingBetweenAreas = true;
+    public void EndAreaTransition() => isMovingBetweenAreas = false;
 
-    public void EndDialogue()
-    {
-        isDialogueActive = false;
-    }
-
-    public void StartAreaTransition()
-    {
-        isMovingBetweenAreas = true;
-    }
-
-    public void EndAreaTransition()
-    {
-        isMovingBetweenAreas = false;
-    }
-
-    public CharacterStats[] GetPlayerStats()
-    {
-        return playerStats;
-    }
+    public CharacterStats[] GetPlayerStats() => playerStats;
 
 }

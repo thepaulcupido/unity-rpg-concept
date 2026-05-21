@@ -3,6 +3,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+/// <summary>
+/// This class is responsible for controlling the player character in the game. It handles player movement, animation, and interactions with the game world.
+/// It also includes methods to enable and disable player movement, and to set the bounds of the player's movement based on the current tilemap.
+/// </summary>
 public class PlayerController : AreaTransition
 {
     // Private fields
