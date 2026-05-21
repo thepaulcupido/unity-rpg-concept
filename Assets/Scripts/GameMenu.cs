@@ -17,6 +17,11 @@ public class GameMenu : MonoBehaviour
     [SerializeField] private Slider[] slider;
     [SerializeField] private GameObject[] characterStatsArray;
 
+    [SerializeField] private GameObject[] StatusButtons;
+    [SerializeField] private Text StatusNameText, StatusHPText, StatusMPText, StatusExpText, 
+    StatusStrText, StatusDefText, StatusWpnText, StatusArmText, StatsArmPowerText, StatusWpnPowText;
+    [SerializeField] private Image StatusCharacterImage;
+
     void Start()
     {
         gameMenuUI.SetActive(false);
@@ -102,6 +107,8 @@ public class GameMenu : MonoBehaviour
     /// <param name="windowNumber"></param>
     public void ToggleWindow(int windowNumber)
     {
+        UpdateMainStats();
+
         for (int i = 0; i < subMenuWindows.Length; i++)
         {
             if (i == windowNumber)
@@ -127,5 +134,46 @@ public class GameMenu : MonoBehaviour
         }
 
         CloseGameMenu();
+    }
+
+    /// <summary>
+    /// This method opens the status menu within the game menu and updates the character stats displayed in the status menu.
+    /// It retrieves the player stats from the GameManager and updates the UI elements accordingly.
+    /// </summary>
+    public void OpenStatusMenu()
+    {
+        UpdateMainStats();
+        UpdateCharacterStats(0);
+        
+        for (int i = 0; i < StatusButtons.Length; i++)
+        {
+            StatusButtons[i].SetActive(playerStats[i].gameObject.activeInHierarchy);
+            StatusButtons[i].GetComponentInChildren<Text>().text = playerStats[i].GetCharacterName();
+
+        }
+    }
+
+    /// <summary>
+    /// This method updates the character stats displayed in the status menu of the game menu. 
+    /// It takes an integer parameter (selected) that indicates which character's stats to display.
+    /// </summary>
+    /// <param name="selected"></param>
+    public void UpdateCharacterStats(int selected)
+    {
+        string weaponText = playerStats[selected].GetWeaponName().ToString();
+        string armourText = playerStats[selected].GetArmorName().ToString();
+        int experienceToLevel = playerStats[selected].GetExpToNextLevel() - playerStats[selected].GetCurrentEXP();
+
+        StatusNameText.text = playerStats[selected].GetCharacterName();
+        StatusHPText.text = playerStats[selected].GetCurrentHP() + "/" + playerStats[selected].GetMaxHP();
+        StatusMPText.text = playerStats[selected].GetCurrentMP() + "/" + playerStats[selected].GetMaxMP();
+        StatusExpText.text = experienceToLevel.ToString();
+        StatusStrText.text = playerStats[selected].GetStrength().ToString();
+        StatusDefText.text = playerStats[selected].GetDefense().ToString();
+        StatusWpnText.text = weaponText != "" ? weaponText : "None";
+        StatusArmText.text = armourText != "" ? armourText: "None";
+        StatsArmPowerText.text = playerStats[selected].GetArmorPower().ToString();
+        StatusWpnPowText.text = playerStats[selected].GetWeaponPower().ToString();
+        StatusCharacterImage.sprite = playerStats[selected].GetCharacterImage();
     }
 }

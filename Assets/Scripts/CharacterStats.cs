@@ -116,5 +116,12 @@ public class CharacterStats : MonoBehaviour
     public int GetMaxMP() => maxMagic;
     public int GetCurrentEXP() => experiencePoints;
     public int GetExpToNextLevel() => expToNextLevel[characterLevel];
+
+    public int GetStrength() => strength;
+    public int GetDefense() => defence;
+    public int GetWeaponPower() => weaponPower;
+    public int GetArmorPower() => armourPower;
+    public string GetWeaponName() => equippedWeapon;
+    public string GetArmorName() => equippedArmour;
     public Sprite GetCharacterImage() => characterImage;
 }
