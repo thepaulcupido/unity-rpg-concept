@@ -8,9 +8,11 @@ using UnityEngine.UI;
 /// </summary>
 public class GameMenu : MonoBehaviour
 {
+    [Header ("Game Menu UI")]
     [SerializeField] private GameObject gameMenuUI;
     [SerializeField] private GameObject[] subMenuWindows;
 
+    [Header ("Player Stats")]
     [SerializeField] private CharacterStats[] playerStats;
     [SerializeField] private Text[] nameText, mpText, hpText, expText, levelText;
     [SerializeField] private Image[] characterImage;
@@ -22,7 +24,27 @@ public class GameMenu : MonoBehaviour
     StatusStrText, StatusDefText, StatusWpnText, StatusArmText, StatsArmPowerText, StatusWpnPowText;
     [SerializeField] private Image StatusCharacterImage;
 
+    [Header ("Player Inventory")]
     [SerializeField] private ItemButton[] itemButtons;
+    [SerializeField] private string selectedItem;
+    [SerializeField] private Item activeItem;
+    [SerializeField] private Text itemNameText, itemDescriptionText, useButtonText;
+
+
+
+    public static GameMenu instance;
+
+     void Awake()
+    {
+        if (instance != null && instance != this)        
+        {
+            Debug.LogWarning("Multiple instances of Game Menu detected. Destroying duplicate.");
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+    }
 
     void Start()
     {
@@ -186,12 +208,10 @@ public class GameMenu : MonoBehaviour
     /// </summary>
     public void ShowItemButtons()
     {
+        GameManager.instance.SortItems();
         string[] itemsHeld = GameManager.instance.GetItemsHeld();
         int[] numberOfItemsHeld = GameManager.instance.GetNumberOfItemsHeld();
         
-        Debug.Log("Items held length: " + itemsHeld.Length);
-        Debug.Log("Number of items held length: " + numberOfItemsHeld.Length);
-
         for (int i = 0; i < itemButtons.Length; i++)
         {
             itemButtons[i].SetValue(i);
@@ -205,9 +225,36 @@ public class GameMenu : MonoBehaviour
             } 
             else
             {
-                itemButtons[i].gameObject.SetActive(false);
+                // itemButtons[i].gameObject.SetActive(false);
                 itemButtons[i].SetItemAmountText("");
             }
+        }
+    }
+
+    public void SetActiveItem(Item item)
+    {
+        activeItem = item;
+
+        if (activeItem != null)
+        {
+            useButtonText.text = activeItem.isWeaponOrArmour() ? "Equip" : "Use";
+            itemNameText.text = activeItem.GetItemName();
+            itemDescriptionText.text = activeItem.GetItemDescription();
+        }
+         else
+        {
+            itemNameText.text = "";
+            itemDescriptionText.text = "";
+            useButtonText.text = "Use";
+        }
+    }
+
+    public void DiscardItem()
+    {
+        if (activeItem != null)
+        {
+            GameManager.instance.RemoveItem(activeItem.GetItemName());
+            SetActiveItem(null);
         }
     }
     
