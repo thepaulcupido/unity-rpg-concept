@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
     /// 
     /// These methods also ensure that the player's movement is appropriately enabled or disabled based on the current game state.
     /// </summary>
-
     public void OpenGameMenu() => isGameMenuOpen = true;
     public void CloseGameMenu() => isGameMenuOpen = false;
 
@@ -62,6 +61,9 @@ public class GameManager : MonoBehaviour
     public void EndAreaTransition() => isMovingBetweenAreas = false;
 
     public CharacterStats[] GetPlayerStats() => playerStats;
+
+    public int[] GetNumberOfItemsHeld() => numberOfItemsHeldByPlayer;
+    public string[] GetItemsHeld() => itemsHeldByPlayer;
 
     /// <summary>
     /// This method takes an item name as input and searches through the referenceItems array to find a matching item.

@@ -22,6 +22,8 @@ public class GameMenu : MonoBehaviour
     StatusStrText, StatusDefText, StatusWpnText, StatusArmText, StatsArmPowerText, StatusWpnPowText;
     [SerializeField] private Image StatusCharacterImage;
 
+    [SerializeField] private ItemButton[] itemButtons;
+
     void Start()
     {
         gameMenuUI.SetActive(false);
@@ -176,4 +178,37 @@ public class GameMenu : MonoBehaviour
         StatusWpnPowText.text = playerStats[selected].GetWeaponPower().ToString();
         StatusCharacterImage.sprite = playerStats[selected].GetCharacterImage();
     }
+
+    /// <summary>
+    /// This method updates the item buttons in the game menu based on the player's inventory.
+    /// It retrieves the player's inventory from the GameManager and updates the item buttons accordingly, 
+    /// displaying the item sprite and amount for each item held by the player.
+    /// </summary>
+    public void ShowItemButtons()
+    {
+        string[] itemsHeld = GameManager.instance.GetItemsHeld();
+        int[] numberOfItemsHeld = GameManager.instance.GetNumberOfItemsHeld();
+        
+        Debug.Log("Items held length: " + itemsHeld.Length);
+        Debug.Log("Number of items held length: " + numberOfItemsHeld.Length);
+
+        for (int i = 0; i < itemButtons.Length; i++)
+        {
+            itemButtons[i].SetValue(i);
+
+            if (itemsHeld.Length > 0 && itemsHeld[i] != "")
+            {
+                Item itemDetails = GameManager.instance.GetItemDetails(itemsHeld[i]);
+                itemButtons[i].SetItemImage(itemDetails.GetItemSprite());
+                itemButtons[i].SetItemAmountText(numberOfItemsHeld[i].ToString());
+                itemButtons[i].gameObject.SetActive(true);
+            } 
+            else
+            {
+                itemButtons[i].gameObject.SetActive(false);
+                itemButtons[i].SetItemAmountText("");
+            }
+        }
+    }
+    
 }
