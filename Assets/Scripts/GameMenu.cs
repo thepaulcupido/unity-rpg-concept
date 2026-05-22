@@ -30,6 +30,8 @@ public class GameMenu : MonoBehaviour
     [SerializeField] private Item activeItem;
     [SerializeField] private Text itemNameText, itemDescriptionText, useButtonText;
 
+    [SerializeField] private GameObject itemCharacterChoiceMenu;
+    [SerializeField] private Text[] itemCharacterChoiceNames;
 
 
     public static GameMenu instance;
@@ -99,6 +101,7 @@ public class GameMenu : MonoBehaviour
         if (gameMenuUI.activeSelf)
         {
             CloseAllSubMenus();
+            itemCharacterChoiceMenu.SetActive(false);
         }
         else
         {
@@ -113,6 +116,8 @@ public class GameMenu : MonoBehaviour
     {
         GameManager.instance.CloseGameMenu();
         gameMenuUI.SetActive(false);
+
+        itemCharacterChoiceMenu.SetActive(false);
     }
 
     /// <summary>
@@ -257,6 +262,23 @@ public class GameMenu : MonoBehaviour
             GameManager.instance.RemoveItem(activeItem.GetItemName());
             SetActiveItem(null);
         }
+    }
+
+    public void OpenItemCharacterChoice()
+    {
+        CharacterStats[] stats = GameManager.instance.GetPlayerStats();
+        itemCharacterChoiceMenu.SetActive(true);
+
+        for (int i = 0; i < itemCharacterChoiceNames.Length; i++)
+        {
+            itemCharacterChoiceNames[i].text = stats[i].GetCharacterName();
+            itemCharacterChoiceNames[i].transform.parent.gameObject.SetActive(stats[i].gameObject.activeInHierarchy);
+        }
+    }
+
+    public void CLoseItemCharacterChoice()
+    {
+        itemCharacterChoiceMenu.SetActive(false);
     }
     
 }
