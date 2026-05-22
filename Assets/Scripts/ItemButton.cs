@@ -24,4 +24,16 @@ public class ItemButton : MonoBehaviour
     public void SetValue(int value) => itemValue = value;
     public void SetItemImage(Sprite newSprite) => itemImage.sprite = newSprite;
     public void SetItemAmountText(string amount) => itemAmountText.text = amount;
+
+    public void Press()
+    {
+        Item item;
+        string[] itemsHeldByPlayer = GameManager.instance.GetItemsHeld();
+
+        if (itemsHeldByPlayer[itemValue] != "")
+        {
+            item = GameManager.instance.GetItemDetails(itemsHeldByPlayer[itemValue]);
+            GameMenu.instance.SetActiveItem(item);
+        }
+    }
 }

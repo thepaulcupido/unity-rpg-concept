@@ -36,4 +36,5 @@ public class Item : MonoBehaviour
     public string GetItemName() => itemName;
     public string GetItemDescription() => itemDescription;
     public Sprite GetItemSprite() => itemSprite;
+    public bool isWeaponOrArmour() => isWeapon || isArmour;
 }
