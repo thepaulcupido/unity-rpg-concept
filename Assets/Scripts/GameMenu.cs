@@ -227,6 +227,7 @@ public class GameMenu : MonoBehaviour
             {
                 // itemButtons[i].gameObject.SetActive(false);
                 itemButtons[i].SetItemAmountText("");
+                itemButtons[i].SetItemImage(null);
             }
         }
     }

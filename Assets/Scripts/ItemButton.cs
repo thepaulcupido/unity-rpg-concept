@@ -22,7 +22,11 @@ public class ItemButton : MonoBehaviour
 
     // setters for item button properties
     public void SetValue(int value) => itemValue = value;
-    public void SetItemImage(Sprite newSprite) => itemImage.sprite = newSprite;
+    public void SetItemImage(Sprite newSprite)
+    {
+        itemImage.sprite = newSprite;
+        itemImage.color = newSprite != null ? new Color(1f, 1f, 1f, 1f) : new Color(1f, 1f, 1f, 0f);
+    }
     public void SetItemAmountText(string amount) => itemAmountText.text = amount;
 
     public void Press()

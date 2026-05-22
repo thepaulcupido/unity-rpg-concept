@@ -180,6 +180,10 @@ public class GameManager : MonoBehaviour
         Debug.LogWarning("Item not found in reference items: " + itemToAdd);
     }
 
+    /// <summary>
+    /// This method removes an item from the player's inventory.
+    /// </summary>
+    /// <param name="itemToRemove"></param>
     public void RemoveItem(string itemToRemove)
     {
         for (int i = 0; i < itemsHeldByPlayer.Length; i++)
