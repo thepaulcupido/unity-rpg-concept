@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 113a912e3f7de3d48a8808cc4be980c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterStats
-  characterName: Tim
+  characterName: Timmy-boy
   characterLevel: 1
-  characterHealth: 0
-  characterMagic: 0
+  characterHealth: 80
+  characterMagic: 20
   experiencePoints: 0
   gold: 0
   strength: 15
@@ -236,6 +236,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d232797f8cad4f1479422796351e8dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamaManager
+  itemsHeldByPlayer:
+  - 
+  - Wooden Sword
+  - Health Potion
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Mana Potion
+  - 
+  - 
+  - 
+  - Wooden Sword
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Leather Armour
+  - 
+  - 
+  - 
+  numberOfItemsHeldByPlayer: 00000000010000000a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000
+  referenceItems:
+  - {fileID: 2668408539909205502, guid: 16116b4944f75924d85b8099305af555, type: 3}
+  - {fileID: 8374495483973770556, guid: 3b585de40acfa7247a43b87d9df7ee73, type: 3}
+  - {fileID: 2216773410740030601, guid: 5d3932d506502f149976822806cb538b, type: 3}
+  - {fileID: 2618470576438226532, guid: d67eb849156beb54ca13880cc7dd36ef, type: 3}
+  - {fileID: 474680154161884362, guid: b22e7f4d2eae43c47afea4d364767a4b, type: 3}
+  - {fileID: 2701492006167648337, guid: 91851be61115fb04da6e161b340981ce, type: 3}
   isGameMenuOpen: 0
   isDialogueActive: 0
   isMovingBetweenAreas: 0
