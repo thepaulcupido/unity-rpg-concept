@@ -33,7 +33,7 @@ public class Item : MonoBehaviour
         
     }
 
-    public void useItem(int index)
+    public void UseItem(int index)
     {
         CharacterStats[] allChararcterStats = GameManager.instance.GetPlayerStats();
 
@@ -88,6 +88,7 @@ public class Item : MonoBehaviour
             allChararcterStats[index].SetEquippedWeapon(itemName);
             allChararcterStats[index].SetWeaponPower(weaponStrength);
         }
+
         else if (isArmour)
         {
             string equippedArmour = allChararcterStats[index].GetArmorName();

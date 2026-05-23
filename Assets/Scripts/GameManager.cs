@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(gameObject);
+
+        SortItems();
     }
 
     /// <summary>
@@ -69,6 +71,7 @@ public class GameManager : MonoBehaviour
     public void StartAreaTransition() => isMovingBetweenAreas = true;
     public void EndAreaTransition() => isMovingBetweenAreas = false;
 
+    // @todo - Need to turn this into a true clone instead of returning a refrence
     public CharacterStats[] GetPlayerStats() => playerStats;
 
     public int[] GetNumberOfItemsHeld() => numberOfItemsHeldByPlayer;

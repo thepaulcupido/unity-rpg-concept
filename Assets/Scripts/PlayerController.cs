@@ -1,7 +1,5 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 /// <summary>
 /// This class is responsible for controlling the player character in the game. It handles player movement, animation, and interactions with the game world.
@@ -84,4 +82,6 @@ public class PlayerController : AreaTransition
     {
         canMove = true;
     }
+
+    public bool IsPlayerMovementEnabled() => canMove;
 }
