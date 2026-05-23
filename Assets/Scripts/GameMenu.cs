@@ -280,5 +280,10 @@ public class GameMenu : MonoBehaviour
     {
         itemCharacterChoiceMenu.SetActive(false);
     }
-    
+
+    public void UseItem(int characterIndex)
+    {
+        activeItem.useItem(characterIndex);
+        CLoseItemCharacterChoice();
+    }    
 }

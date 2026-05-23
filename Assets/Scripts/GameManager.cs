@@ -225,4 +225,28 @@ public class GameManager : MonoBehaviour
 
         return false;
     }
+
+    public void UpdatePlayerStats(CharacterStats[] newStats)
+    {
+        if (newStats.Length != playerStats.Length)
+        {
+            Debug.LogError("The Player Stats Array parameter does not match the length of existing the Player Stats Array. Please review the variable passed to this function.");
+            return;
+        }
+
+        for (int i = 0; i < newStats.Length; i++)
+        {
+            playerStats[i].SetCharacterHealth(newStats[i].GetCurrentHP());
+            playerStats[i].SetCharacterMagic(newStats[i].GetCurrentMP());
+            playerStats[i].SetEquippedWeapon(newStats[i].GetWeaponName());
+            playerStats[i].SetEquippedArmour(newStats[i].GetArmorName());
+
+            playerStats[i].SetCharacterExp(newStats[i].GetCurrentEXP());
+            playerStats[i].SetCharacterLevel(newStats[i].GetLevel());
+            playerStats[i].SetCharacterMaxHealth(newStats[i].GetMaxHP());
+            playerStats[i].SetCharacterMaxMagic(newStats[i].GetMaxMP());
+
+            playerStats[i].SetCharacterName(newStats[i].GetCharacterName());
+        }
+    }
 }

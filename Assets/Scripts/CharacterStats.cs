@@ -124,4 +124,24 @@ public class CharacterStats : MonoBehaviour
     public string GetWeaponName() => equippedWeapon;
     public string GetArmorName() => equippedArmour;
     public Sprite GetCharacterImage() => characterImage;
+
+
+    /// <summary>
+    /// The following methods are setters for the character's stats. 
+    /// </summary>
+    public void SetCharacterHealth(int newHealth) => characterHealth = newHealth;
+    public void SetCharacterMagic(int newMagic) => characterMagic = newMagic;
+    public void SetCharacterMaxHealth(int newHealthMax) => maxHealth = newHealthMax;
+    public void SetCharacterMaxMagic(int newMagicMax) => maxMagic = newMagicMax;
+    public void SetCharacterLevel(int newLevel) => characterLevel = newLevel;
+    public void SetCharacterExp(int newExp) => experiencePoints = newExp;
+    public void SetCharacterStrength(int newStrength) => strength = newStrength;
+
+    public void SetEquippedWeapon(string newWeapon) => equippedWeapon = newWeapon;
+    public void SetEquippedArmour(string newArmour) => equippedArmour = newArmour;
+    public void SetCharacterName(string newName) => characterName = newName;
+
+    public void SetWeaponPower(int newPower) => weaponPower = newPower;
+    public void SetArmourPower(int newPower) => armourPower = newPower;
+
 }
