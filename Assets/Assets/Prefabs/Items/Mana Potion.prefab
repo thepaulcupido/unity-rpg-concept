@@ -112,7 +112,7 @@ MonoBehaviour:
   isWeapon: 0
   isArmour: 0
   effectsHealth: 0
-  effectsMana: 1
+  effectsMagic: 1
   effectsStrength: 0
   itemPower: 50
   weaponStrength: 0

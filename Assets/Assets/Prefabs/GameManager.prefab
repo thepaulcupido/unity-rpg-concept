@@ -61,7 +61,7 @@ MonoBehaviour:
   characterImage: {fileID: 7152930139536384079, guid: a6b95ff178401474dbb4aaf01bc90024, type: 3}
   maxLevel: 100
   baseExperience: 1000
-  expToNextLevel: 
+  expToNextLevel: e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000
   magicLevelBonusArray: 
 --- !u!1 &809846930429355972
 GameObject:
@@ -172,8 +172,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterStats
   characterName: Woody
   characterLevel: 3
-  characterHealth: 0
-  characterMagic: 0
+  characterHealth: 50
+  characterMagic: 25
   experiencePoints: 544
   gold: 0
   strength: 22
@@ -187,7 +187,7 @@ MonoBehaviour:
   characterImage: {fileID: 21300000, guid: e0ddba6d3fcf21f49949fcc95c849aac, type: 3}
   maxLevel: 100
   baseExperience: 1000
-  expToNextLevel: 
+  expToNextLevel: e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000
   magicLevelBonusArray: 
 --- !u!1 &5310086974027061858
 GameObject:
@@ -288,3 +288,4 @@ MonoBehaviour:
   - {fileID: 250457246337121683}
   - {fileID: 146303231184986511}
   - {fileID: 2259478326029337400}
+  itemNumberLimit: 999
