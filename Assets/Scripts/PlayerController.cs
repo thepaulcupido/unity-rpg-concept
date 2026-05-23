@@ -84,4 +84,6 @@ public class PlayerController : AreaTransition
     {
         canMove = true;
     }
+
+    pubilc bool IsPlayerMovementEnabled() => return canMove;
 }
