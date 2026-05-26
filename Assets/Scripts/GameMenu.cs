@@ -32,6 +32,7 @@ public class GameMenu : MonoBehaviour
 
     [SerializeField] private GameObject itemCharacterChoiceMenu;
     [SerializeField] private Text[] itemCharacterChoiceNames;
+    [SerializeField] private Text currentGoldText;
 
 
     public static GameMenu instance;
@@ -81,6 +82,8 @@ public class GameMenu : MonoBehaviour
                 characterImage[i].sprite = playerStats[i].GetCharacterImage();
                 slider[i].maxValue = playerStats[i].GetExpToNextLevel();
                 slider[i].value = playerStats[i].GetCurrentEXP();
+
+                currentGoldText.text = GameManager.instance.GetCurrentGold() +"g";
 
                 characterStatsArray[i].SetActive(true);
             } 

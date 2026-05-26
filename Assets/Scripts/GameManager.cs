@@ -12,10 +12,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string[] itemsHeldByPlayer;
     [SerializeField] private int[] numberOfItemsHeldByPlayer;
     [SerializeField] private Item[] referenceItems;
+    [SerializeField] private int currentGold;
 
 
     [Header ("Game State")]
-    [SerializeField] private bool isGameMenuOpen, isDialogueActive, isMovingBetweenAreas;
+    [SerializeField] private bool isGameMenuOpen;
+    [SerializeField] private bool isDialogueActive;
+    [SerializeField] private bool isMovingBetweenAreas;
+    [SerializeField] private bool isShopActive;
     [SerializeField] private CharacterStats[] playerStats;
 
     [SerializeField] private int itemNumberLimit = 999;
@@ -40,7 +44,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (isGameMenuOpen || isDialogueActive || isMovingBetweenAreas)
+        if (isGameMenuOpen || isDialogueActive || isMovingBetweenAreas || isShopActive)
         {
             PlayerController.instance.DisableMovement();
         }
@@ -71,10 +75,16 @@ public class GameManager : MonoBehaviour
     public void StartAreaTransition() => isMovingBetweenAreas = true;
     public void EndAreaTransition() => isMovingBetweenAreas = false;
 
+    public void OpenShopMenu() => isShopActive = true;
+    public void CloseShopMenu() => isShopActive = false;
+
+    public void SetGold(int newGold) => currentGold = newGold;
+
     // @todo - Need to turn this into a true clone instead of returning a refrence
     public CharacterStats[] GetPlayerStats() => playerStats;
 
     public int[] GetNumberOfItemsHeld() => numberOfItemsHeldByPlayer;
+    public int GetCurrentGold() => currentGold;
     public string[] GetItemsHeld() => itemsHeldByPlayer;
     public Item[] GetReferenceItems() => referenceItems;
 
