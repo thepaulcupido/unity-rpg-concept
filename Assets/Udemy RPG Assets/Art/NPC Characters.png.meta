@@ -190,6 +190,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Shopkkeper
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 51
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9533ec1e831a354dbf09a19430041ca
+      internalID: -270566551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -205,6 +227,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       NPC_0: 21300000
+      Shopkkeper: -270566551
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
