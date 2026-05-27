@@ -3,6 +3,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages the in-game shop UI and inventory, providing the player with
+/// the ability to buy and sell items. Exposes controls for opening and
+/// closing the shop, switching between buy and sell views, and updating
+/// the shop's available inventory at runtime.
+/// </summary>
 public class Shop : MonoBehaviour
 {
     public static Shop instance;
@@ -18,18 +24,32 @@ public class Shop : MonoBehaviour
      [Header ("Shop Items")]
     [SerializeField] private string[] itemsForSale;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+  
+    /// <summary>
+    /// Initializes the <see cref="Shop"/> singleton instance on scene load.
+    /// If an instance already exists, the duplicate is destroyed and a warning is logged.
+    /// The surviving instance is marked to persist across scene loads via
+    /// <see cref="Object.DontDestroyOnLoad"/>.
+    /// </summary>
+    void Awake()
     {
-        
+        if (instance != null && instance != this)        
+        {
+            Debug.LogWarning("Multiple instances of Shop detected. Destroying duplicate.");
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /// <summary>
+    /// Opens the shop UI and initializes it to the buy menu view.
+    /// Activates the shop menu, switches to the buy menu, notifies the
+    /// <see cref="GameManager"/> that the shop is open, and refreshes
+    /// the displayed gold amount to reflect the player's current balance.
+    /// </summary>
     public void OpenShop()
     {
         shopMenu.SetActive(true);
@@ -68,13 +88,26 @@ public class Shop : MonoBehaviour
 
     public GameObject GetShopMenu() => shopMenu;
 
+    /// <summary>
+    /// Replaces the shop's current inventory with a new set of items available for purchase.
+    /// Performs a shallow clone of <paramref name="newItems"/>, ensuring the internal
+    /// inventory is decoupled from the caller's array reference.
+    /// </summary>
+    /// <param name="newItems">
+    /// A non-null, non-empty string array of item identifiers to stock in the shop.
+    /// </param>
     public void SetItemsForSale(string[] newItems)
     {
-        itemsForSale = new string[newItems.Length];
-
-        for (int i = 0; i < itemsForSale.Length; i++)
+        if (newItems == null)
         {
-            itemsForSale[i] = newItems[i];
+            throw new ArgumentNullException(nameof(newItems), "Items for sale array cannot be null.");
         }
+
+        if (newItems.Length == 0)
+        {
+            throw new ArgumentException("Items for sale array cannot be empty.", nameof(newItems));
+        }
+
+        itemsForSale = (string[])newItems.Clone();
     }
 }
