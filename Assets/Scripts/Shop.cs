@@ -87,6 +87,7 @@ public class Shop : MonoBehaviour
     }
 
     public GameObject GetShopMenu() => shopMenu;
+    public bool isOpen => shopMenu.activeInHierarchy;
 
     /// <summary>
     /// Replaces the shop's current inventory with a new set of items available for purchase.
