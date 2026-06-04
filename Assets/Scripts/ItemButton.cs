@@ -1,24 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Represents a button in the inventory UI that corresponds to an item held by the player character.
+/// </summary>
 public class ItemButton : MonoBehaviour
 {
 
     [SerializeField] private Image itemImage;
     [SerializeField] private Text itemAmountText;
     [SerializeField] private int itemValue;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     // setters for item button properties
     public void SetValue(int value) => itemValue = value;
@@ -31,13 +22,33 @@ public class ItemButton : MonoBehaviour
 
     public void Press()
     {
-        Item item;
-        string[] itemsHeldByPlayer = GameManager.instance.GetItemsHeld();
+        Shop shop = Shop.instance;
+        GameManager gameMan = GameManager.instance;
 
-        if (itemsHeldByPlayer[itemValue] != "")
+        if (GameMenu.instance.GameMenuUI.activeInHierarchy)
         {
-            item = GameManager.instance.GetItemDetails(itemsHeldByPlayer[itemValue]);
-            GameMenu.instance.SetActiveItem(item);
+            Item item;
+            string[] itemsHeldByPlayer = gameMan.GetItemsHeld();
+
+            if (itemsHeldByPlayer[itemValue] != "")
+            {
+                item = gameMan.GetItemDetails(itemsHeldByPlayer[itemValue]);
+                GameMenu.instance.SetActiveItem(item);
+            }
+        }
+
+    
+        if (shop.ShopMenuUI.activeInHierarchy)
+        {
+            if (shop.ShopBuyMenuUI.activeInHierarchy)
+            {
+                shop.SelectBuyItem(gameMan.GetItemDetails(shop.ItemsForSale[itemValue]));
+            }
+            
+            if (shop.ShopSellMenuUI.activeInHierarchy)
+            {
+                shop.SelectSellItem(gameMan.GetItemDetails(gameMan.ItemsHeldByPlayer[itemValue]));
+            }
         }
     }
 }

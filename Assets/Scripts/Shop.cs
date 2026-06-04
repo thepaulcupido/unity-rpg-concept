@@ -3,10 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Manages the in-game shop UI and inventory, providing the player with
-/// the ability to buy and sell items. Exposes controls for opening and
-/// closing the shop, switching between buy and sell views, and updating
-/// the shop's available inventory at runtime.
+/// Manages the in-game shop UI and inventory, 
+/// allowing the player to buy and sell items with a shopkeeper NPC.
 /// </summary>
 public class Shop : MonoBehaviour
 {
@@ -17,15 +15,25 @@ public class Shop : MonoBehaviour
     [SerializeField] private GameObject buyMenu;
     [SerializeField] private GameObject sellMenu;
 
-     [Header ("Player Information")]
+    [Header ("Player Information")]
     [SerializeField] private Text goldText;
 
     [Header ("Shop Items")]
     [SerializeField] private string[] itemsForSale;
     [SerializeField] private ItemButton[] buyItemButtons;
     [SerializeField] private ItemButton[] sellItemButtons;
+    [SerializeField] private Item selectedItem;
 
-  
+    [Header ("Buy Items")]
+    [SerializeField] private Text buyItemNameText;
+    [SerializeField] private Text buyItemDescriptionText;
+    [SerializeField] private Text buyItemValueText;
+
+    [Header ("Sell Items")]
+    [SerializeField] private Text sellItemNameText;
+    [SerializeField] private Text sellItemDescriptionText;
+    [SerializeField] private Text sellItemValueText;
+
     /// <summary>
     /// Initializes the <see cref="Shop"/> singleton instance on scene load.
     /// If an instance already exists, the duplicate is destroyed and a warning is logged.
@@ -74,9 +82,21 @@ public class Shop : MonoBehaviour
     /// </summary>
     public void OpenBuyMenu()
     {
+        // early exit if no buy item buttons are assigned to avoid null reference exceptions
+        if (buyItemButtons == null || buyItemButtons.Length == 0)
+        {
+            Debug.LogWarning("No buy item buttons assigned in the shop.");
+            return;
+        }
+ 
+        // activate the buy menu and deactivate the sell menu
         buyMenu.SetActive(true);
         sellMenu.SetActive(false);
 
+        // simulate pressing the first buy item button to initialize the buy item details display
+        buyItemButtons[0].Press();
+
+        // iterate through the shop's inventory of items for sale and update each buy item button to display the corresponding item
         for (int i = 0; i < buyItemButtons.Length; i++)
         {
             if (itemsForSale[i] != "" && itemsForSale[i] != null)
@@ -87,7 +107,7 @@ public class Shop : MonoBehaviour
                 {
                     buyItemButtons[i].SetItemImage(itemDetails.ItemSprite);
                     buyItemButtons[i].SetItemAmountText("");
-                    buyItemButtons[i].SetValue(itemDetails.ItemValue);
+                    buyItemButtons[i].SetValue(i);
                     buyItemButtons[i].gameObject.SetActive(true);
                 }
             } 
@@ -106,14 +126,29 @@ public class Shop : MonoBehaviour
     /// </summary>
     public void OpenSellMenu()
     {
+        // early exit if no sell item buttons are assigned to avoid null reference exceptions
+        if (sellItemButtons == null || sellItemButtons.Length == 0)
+        {
+            Debug.LogWarning("No sell item buttons assigned in the shop.");
+            return;
+        }
+
+        // activate the sell menu and deactivate the buy menu
         buyMenu.SetActive(false);
         sellMenu.SetActive(true);
 
         GameManager gameMan = GameManager.instance;
+    
+        // sort the player's inventory to ensure empty slots are at the end of the array
+        gameMan.SortItems();
+
+        // retrieve the player's current inventory from the Game Manager
         string[] itemsHeldByPlayer = gameMan.ItemsHeldByPlayer;
 
-        gameMan.SortItems();
+        // simulate pressing the first sell item button to initialize the sell item details display
+        sellItemButtons[0].Press();
         
+        // iterate through the sell item buttons and update each one to display the corresponding item from the player's inventory
         for (int i = 0; i < sellItemButtons.Length; i++)
         {
             sellItemButtons[i].SetValue(i);
@@ -137,8 +172,12 @@ public class Shop : MonoBehaviour
             sellItemButtons[i].SetItemImage(null);    
         }
     }
-
-    public GameObject GetShopMenu() => shopMenu;
+    
+    // getters for shop properties
+    public string[] ItemsForSale => itemsForSale;
+    public GameObject ShopMenuUI => shopMenu;
+    public GameObject ShopBuyMenuUI => buyMenu;
+    public GameObject ShopSellMenuUI => sellMenu;
     public bool IsOpen => shopMenu.activeInHierarchy;
 
     /// <summary>
@@ -163,4 +202,32 @@ public class Shop : MonoBehaviour
 
         itemsForSale = (string[])newItems.Clone();
     }
+
+    /// <summary>
+    /// This method is called when the player selects an item from the shop's buy menu to view its details.
+    /// </summary>
+    /// <param name="item"></param>
+    public void SelectBuyItem(Item item)
+    {
+        selectedItem = item;
+        buyItemNameText.text = item.ItemName;
+        buyItemDescriptionText.text = item.ItemDescription;
+        buyItemValueText.text = "Value: " + item.ItemValue.ToString() + "g";
+    }
+
+    /// <summary>
+    /// This method is called when the player selects an item from their inventory to sell in the shop.
+    /// </summary>
+    /// <param name="item"></param>
+    public void SelectSellItem(Item item)
+    {
+        string itemValueText = Mathf.FloorToInt(item.ItemValue * 0.5f).ToString();
+
+        selectedItem = item;
+        sellItemNameText.text = item.ItemName;
+        sellItemDescriptionText.text = item.ItemDescription;
+        sellItemValueText.text = "Value: " + itemValueText + "g";
+    }
+
+
 }
