@@ -216,9 +216,11 @@ public class GameMenu : MonoBehaviour
     /// </summary>
     public void ShowItemButtons()
     {
-        GameManager.instance.SortItems();
-        string[] itemsHeld = GameManager.instance.GetItemsHeld();
-        int[] numberOfItemsHeld = GameManager.instance.GetNumberOfItemsHeld();
+        GameManager gameMan = GameManager.instance;
+        string[] itemsHeld = gameMan.ItemsHeldByPlayer;
+        int[] numberOfItemsHeld = gameMan.NumberOfItemsHeldByPlayer;
+
+        gameMan.SortItems();
         
         for (int i = 0; i < itemButtons.Length; i++)
         {
@@ -226,7 +228,7 @@ public class GameMenu : MonoBehaviour
 
             if (itemsHeld.Length > 0 && itemsHeld[i] != "")
             {
-                Item itemDetails = GameManager.instance.GetItemDetails(itemsHeld[i]);
+                Item itemDetails = gameMan.GetItemDetails(itemsHeld[i]);
                 itemButtons[i].SetItemImage(itemDetails.GetItemSprite());
                 itemButtons[i].SetItemAmountText(numberOfItemsHeld[i].ToString());
                 itemButtons[i].gameObject.SetActive(true);

@@ -84,8 +84,10 @@ public class GameManager : MonoBehaviour
     public CharacterStats[] GetPlayerStats() => playerStats;
 
     public int[] GetNumberOfItemsHeld() => numberOfItemsHeldByPlayer;
+    public int[] NumberOfItemsHeldByPlayer => numberOfItemsHeldByPlayer;
     public int GetCurrentGold() => currentGold;
     public string[] GetItemsHeld() => itemsHeldByPlayer;
+    public string[] ItemsHeldByPlayer => itemsHeldByPlayer;
     public Item[] GetReferenceItems() => referenceItems;
 
     /// <summary>

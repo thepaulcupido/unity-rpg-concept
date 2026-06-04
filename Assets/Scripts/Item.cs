@@ -111,4 +111,6 @@ public class Item : MonoBehaviour
     public string GetItemDescription() => itemDescription;
     public Sprite GetItemSprite() => itemSprite;
     public bool isWeaponOrArmour() => isWeapon || isArmour;
+    public int ItemValue => itemValue;
+    public Sprite ItemSprite => itemSprite;
 }
