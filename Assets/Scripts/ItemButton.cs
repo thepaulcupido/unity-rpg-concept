@@ -28,7 +28,7 @@ public class ItemButton : MonoBehaviour
         if (GameMenu.instance.GameMenuUI.activeInHierarchy)
         {
             Item item;
-            string[] itemsHeldByPlayer = gameMan.GetItemsHeld();
+            string[] itemsHeldByPlayer = gameMan.ItemsHeldByPlayer;
 
             if (itemsHeldByPlayer[itemValue] != "")
             {

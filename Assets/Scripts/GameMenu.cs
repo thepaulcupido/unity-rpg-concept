@@ -70,7 +70,7 @@ public class GameMenu : MonoBehaviour
     /// </summary>
     public void UpdateMainStats()
     {
-        playerStats = GameManager.instance.GetPlayerStats();
+        playerStats = GameManager.instance.PlayerStats;
 
         for (int i = 0; i < playerStats.Length; i++)
         {
@@ -273,7 +273,7 @@ public class GameMenu : MonoBehaviour
 
     public void OpenItemCharacterChoice()
     {
-        CharacterStats[] stats = GameManager.instance.GetPlayerStats();
+        CharacterStats[] stats = GameManager.instance.PlayerStats;
         itemCharacterChoiceMenu.SetActive(true);
 
         for (int i = 0; i < itemCharacterChoiceNames.Length; i++)

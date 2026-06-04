@@ -33,7 +33,7 @@ public class Item : MonoBehaviour
     /// <param name="index"></param>
     public void UseItem(int index)
     {
-        CharacterStats[] allChararcterStats = GameManager.instance.GetPlayerStats();
+        CharacterStats[] allChararcterStats = GameManager.instance.PlayerStats;
 
         // don't naively trust the index just because it's an int.
         if (index < 0 || index >= allChararcterStats.Length)

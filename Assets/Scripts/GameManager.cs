@@ -60,12 +60,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// The following methods are used to manage the game state, allowing other scripts to open and close the game menu, 
-    /// start and end dialogue, and start and end area transitions. 
-    /// 
-    /// These methods also ensure that the player's movement is appropriately enabled or disabled based on the current game state.
-    /// </summary>
+    // getters and setters for game state properties
     public void OpenGameMenu() => isGameMenuOpen = true;
     public void CloseGameMenu() => isGameMenuOpen = false;
 
@@ -80,13 +75,11 @@ public class GameManager : MonoBehaviour
 
     public void SetGold(int newGold) => currentGold = newGold;
 
-    // @todo - Need to turn this into a true clone instead of returning a refrence
-    public CharacterStats[] GetPlayerStats() => playerStats;
-
-    public int[] GetNumberOfItemsHeld() => numberOfItemsHeldByPlayer;
+    // getters for game state properties
+    public CharacterStats[] PlayerStats => playerStats;
     public int[] NumberOfItemsHeldByPlayer => numberOfItemsHeldByPlayer;
     public int GetCurrentGold() => currentGold;
-    public string[] GetItemsHeld() => itemsHeldByPlayer;
+
     public string[] ItemsHeldByPlayer => itemsHeldByPlayer;
     public Item[] GetReferenceItems() => referenceItems;
 
@@ -241,6 +234,10 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// This method takes an array of CharacterStats as input and updates the playerStats array with the new values.
+    /// </summary>
+    /// <param name="newStats"></param>
     public void UpdatePlayerStats(CharacterStats[] newStats)
     {
         if (newStats.Length != playerStats.Length)
