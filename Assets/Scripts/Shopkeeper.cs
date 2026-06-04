@@ -18,7 +18,7 @@ public class Shopkeeper : MonoBehaviour
     private bool playerInRange;
 
     // TODO: refactor to use an array of Items instead of array of string IDs
-    [SerializeField] private string[] itemsForSale;
+    [SerializeField] private string[] itemsForSale = new string[36];
 
     /// <summary>
     /// Checks for player interaction input while the player

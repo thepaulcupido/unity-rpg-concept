@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,15 +20,15 @@ public class Shop : MonoBehaviour
      [Header ("Player Information")]
     [SerializeField] private Text goldText;
 
-     [Header ("Shop Items")]
+    [Header ("Shop Items")]
     [SerializeField] private string[] itemsForSale;
+    [SerializeField] private ItemButton[] buyItemButtons;
+    [SerializeField] private ItemButton[] sellItemButtons;
 
   
     /// <summary>
     /// Initializes the <see cref="Shop"/> singleton instance on scene load.
     /// If an instance already exists, the duplicate is destroyed and a warning is logged.
-    /// The surviving instance is marked to persist across scene loads via
-    /// <see cref="Object.DontDestroyOnLoad"/>.
     /// </summary>
     void Awake()
     {
@@ -60,7 +59,7 @@ public class Shop : MonoBehaviour
     }
 
     /// <summary>
-    /// This method closes the shop but setting the shop menu to inactive and calling the Game Manager's CloseShop method
+    /// This method closes the shop but setting the shop menu to inactive and calling the Game Manager's CloseShopMenu method
     /// </summary>
     public void CloseShop()
     {
@@ -70,24 +69,77 @@ public class Shop : MonoBehaviour
 
     /// <summary>
     /// This method sets the buy menu to active and the sell menu to inactive.
+    /// It then iterates through the shop's inventory of items for sale, retrieves the details for each item 
+    /// from the Game Manager, and updates the corresponding buy item button.
     /// </summary>
     public void OpenBuyMenu()
     {
         buyMenu.SetActive(true);
         sellMenu.SetActive(false);
+
+        for (int i = 0; i < buyItemButtons.Length; i++)
+        {
+            if (itemsForSale[i] != "" && itemsForSale[i] != null)
+            {
+                Item itemDetails = GameManager.instance.GetItemDetails(itemsForSale[i]);
+  
+                if (itemDetails != null)
+                {
+                    buyItemButtons[i].SetItemImage(itemDetails.ItemSprite);
+                    buyItemButtons[i].SetItemAmountText("");
+                    buyItemButtons[i].SetValue(itemDetails.ItemValue);
+                    buyItemButtons[i].gameObject.SetActive(true);
+                }
+            } 
+            else
+            {
+                buyItemButtons[i].SetItemAmountText("");
+                buyItemButtons[i].SetItemImage(null);
+            }
+        }
     }
 
     /// <summary>
     /// This method sets the sell menu to active and the buy menu to inactive.
+    /// It then retrieves the player's current inventory from the Game Manager, sorts it, 
+    /// and updates each sell item button to display the corresponding item image.
     /// </summary>
     public void OpenSellMenu()
     {
         buyMenu.SetActive(false);
         sellMenu.SetActive(true);
+
+        GameManager gameMan = GameManager.instance;
+        string[] itemsHeldByPlayer = gameMan.ItemsHeldByPlayer;
+
+        gameMan.SortItems();
+        
+        for (int i = 0; i < sellItemButtons.Length; i++)
+        {
+            sellItemButtons[i].SetValue(i);
+
+            if (gameMan.ItemsHeldByPlayer[i] != "")
+            {
+                string text = gameMan.NumberOfItemsHeldByPlayer[i].ToString();
+                Item itemDetails = gameMan.GetItemDetails(itemsHeldByPlayer[i]);
+                
+                if (itemDetails != null)
+                {
+                    sellItemButtons[i].SetItemImage(itemDetails.ItemSprite);
+                    sellItemButtons[i].SetItemAmountText(text);
+                    sellItemButtons[i].gameObject.SetActive(true);
+                    continue;
+                }
+                Debug.LogWarning("Item details not found for item: " + gameMan.ItemsHeldByPlayer[i]);
+            }
+
+            sellItemButtons[i].SetItemAmountText("");
+            sellItemButtons[i].SetItemImage(null);    
+        }
     }
 
     public GameObject GetShopMenu() => shopMenu;
-    public bool isOpen => shopMenu.activeInHierarchy;
+    public bool IsOpen => shopMenu.activeInHierarchy;
 
     /// <summary>
     /// Replaces the shop's current inventory with a new set of items available for purchase.
