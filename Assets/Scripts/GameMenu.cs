@@ -34,6 +34,8 @@ public class GameMenu : MonoBehaviour
     [SerializeField] private Text[] itemCharacterChoiceNames;
     [SerializeField] private Text currentGoldText;
 
+    public GameObject GameMenuUI => gameMenuUI;
+
 
     public static GameMenu instance;
 
@@ -229,7 +231,7 @@ public class GameMenu : MonoBehaviour
             if (itemsHeld.Length > 0 && itemsHeld[i] != "")
             {
                 Item itemDetails = gameMan.GetItemDetails(itemsHeld[i]);
-                itemButtons[i].SetItemImage(itemDetails.GetItemSprite());
+                itemButtons[i].SetItemImage(itemDetails.ItemSprite);
                 itemButtons[i].SetItemAmountText(numberOfItemsHeld[i].ToString());
                 itemButtons[i].gameObject.SetActive(true);
             } 
@@ -248,9 +250,9 @@ public class GameMenu : MonoBehaviour
 
         if (activeItem != null)
         {
-            useButtonText.text = activeItem.isWeaponOrArmour() ? "Equip" : "Use";
-            itemNameText.text = activeItem.GetItemName();
-            itemDescriptionText.text = activeItem.GetItemDescription();
+            useButtonText.text = activeItem.IsWeaponOrArmour ? "Equip" : "Use";
+            itemNameText.text = activeItem.ItemName;
+            itemDescriptionText.text = activeItem.ItemDescription;
         }
          else
         {
@@ -264,7 +266,7 @@ public class GameMenu : MonoBehaviour
     {
         if (activeItem != null)
         {
-            GameManager.instance.RemoveItem(activeItem.GetItemName());
+            GameManager.instance.RemoveItem(activeItem.ItemName);
             SetActiveItem(null);
         }
     }

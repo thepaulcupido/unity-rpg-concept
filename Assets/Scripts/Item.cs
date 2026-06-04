@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Represents an item that can be used by the player character, equipped as a weapon or piece of armour, 
+/// or consumed for various effects.
+/// </summary>
 public class Item : MonoBehaviour
 {
 
@@ -21,18 +25,12 @@ public class Item : MonoBehaviour
     [SerializeField] private int itemPower;
     [SerializeField] private int weaponStrength;
     [SerializeField] private int armourStrength;
-    
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
+    /// <summary>
+    /// This method applies the effects of using the item to the player character at the specified index.
+    /// </summary>
+    /// <param name="index"></param>
     public void UseItem(int index)
     {
         CharacterStats[] allChararcterStats = GameManager.instance.GetPlayerStats();
@@ -107,10 +105,18 @@ public class Item : MonoBehaviour
         GameManager.instance.RemoveItem(itemName);
     }
 
-    public string GetItemName() => itemName;
-    public string GetItemDescription() => itemDescription;
-    public Sprite GetItemSprite() => itemSprite;
-    public bool isWeaponOrArmour() => isWeapon || isArmour;
+    /// <summary>
+    /// getters for item properties
+    /// </summary>
     public int ItemValue => itemValue;
+    public string ItemName => itemName;
+    public string ItemDescription => itemDescription;
     public Sprite ItemSprite => itemSprite;
+
+    /// <summary>
+    /// Gets a value indicating whether the item is a weapon or armour.
+    /// </summary>
+    public bool IsWeaponOrArmour => isWeapon || isArmour;
+
+
 }

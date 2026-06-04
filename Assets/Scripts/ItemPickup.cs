@@ -16,7 +16,7 @@ public class ItemPickup : MonoBehaviour
     {
         if (canPickup && Input.GetButtonDown("Fire1") && PlayerController.instance.IsPlayerMovementEnabled())
         {
-            string itemName = GetComponent<Item>().GetItemName(); 
+            string itemName = GetComponent<Item>().ItemName; 
             GameManager.instance.AddItem(itemName);
             Destroy(gameObject);
         }
