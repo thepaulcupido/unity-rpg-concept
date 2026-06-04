@@ -3035,6 +3035,13 @@ MonoBehaviour:
   - {fileID: 1426066493}
   - {fileID: 348737495}
   - {fileID: 479721949}
+  selectedItem: {fileID: 0}
+  buyItemNameText: {fileID: 677164747}
+  buyItemDescriptionText: {fileID: 1450694876}
+  buyItemValueText: {fileID: 1296290169}
+  sellItemNameText: {fileID: 1562348265}
+  sellItemDescriptionText: {fileID: 297026084}
+  sellItemValueText: {fileID: 1550005630}
 --- !u!1 &241373682
 GameObject:
   m_ObjectHideFlags: 0
@@ -10372,6 +10379,13 @@ MonoBehaviour:
   itemsForSale: []
   buyItemButtons: []
   sellItemButtons: []
+  selectedItem: {fileID: 0}
+  buyItemNameText: {fileID: 0}
+  buyItemDescriptionText: {fileID: 0}
+  buyItemValueText: {fileID: 0}
+  sellItemNameText: {fileID: 0}
+  sellItemDescriptionText: {fileID: 0}
+  sellItemValueText: {fileID: 0}
 --- !u!1 &771613089
 GameObject:
   m_ObjectHideFlags: 0
