@@ -63,7 +63,7 @@ public class Shop : MonoBehaviour
         OpenBuyMenu();
         GameManager.instance.OpenShopMenu();
 
-        goldText.text = GameManager.instance.GetCurrentGold().ToString() + "g";
+        goldText.text = GameManager.instance.CurrentGold.ToString() + "g";
     }
 
     /// <summary>
@@ -126,16 +126,136 @@ public class Shop : MonoBehaviour
     /// </summary>
     public void OpenSellMenu()
     {
+        // activate the sell menu and deactivate the buy menu
+        buyMenu.SetActive(false);
+        sellMenu.SetActive(true);
+
+        ShowSellItemButtons();
+    }
+
+    // getters for shop properties
+    public string[] ItemsForSale => itemsForSale;
+    public GameObject ShopMenuUI => shopMenu;
+    public GameObject ShopBuyMenuUI => buyMenu;
+    public GameObject ShopSellMenuUI => sellMenu;
+    public bool IsOpen => shopMenu.activeInHierarchy;
+
+    /// <summary>
+    /// Replaces the shop's current inventory with a new set of items available for purchase.
+    /// Performs a shallow clone of <paramref name="newItems"/>, ensuring the internal
+    /// inventory is decoupled from the caller's array reference.
+    /// </summary>
+    /// <param name="newItems">
+    /// A non-null, non-empty string array of item identifiers to stock in the shop.
+    /// </param>
+    public void SetItemsForSale(string[] newItems)
+    {
+        if (newItems == null)
+        {
+            throw new ArgumentNullException(nameof(newItems), "Items for sale array cannot be null.");
+        }
+
+        if (newItems.Length == 0)
+        {
+            throw new ArgumentException("Items for sale array cannot be empty.", nameof(newItems));
+        }
+
+        itemsForSale = (string[])newItems.Clone();
+    }
+
+    /// <summary>
+    /// This method is called when the player selects an item from the shop's buy menu to view its details.
+    /// It updates the selected item and the corresponding UI text fields to display the item's name, description, and value.
+    /// </summary>
+    /// <param name="item"></param>
+    public void SelectBuyItem(Item item)
+    {
+        selectedItem = item;
+        buyItemNameText.text = item.ItemName;
+        buyItemDescriptionText.text = item.ItemDescription;
+        buyItemValueText.text = "Value: " + item.ItemValue.ToString() + "g";
+    }
+
+    /// <summary>
+    /// This method is called when the player selects an item from their inventory to sell in the shop.
+    /// It updates the selected item and the corresponding UI text fields to display the item's name, description, 
+    /// and value (calculated as half the item's original value).
+    /// </summary>
+    /// <param name="item"></param>
+    public void SelectSellItem(Item item)
+    {
+        string itemValueText = Mathf.FloorToInt(item.ItemValue * 0.5f).ToString();
+
+        selectedItem = item;
+        sellItemNameText.text = item.ItemName;
+        sellItemDescriptionText.text = item.ItemDescription;
+        sellItemValueText.text = "Value: " + itemValueText + "g";
+    }
+
+    /// <summary>
+    /// This method checks if the player has enough gold to buy an item, and if so, it adds the item to their inventory 
+    /// and updates the gold amount in the Game Manager.
+    /// </summary>
+    public void BuySelectedItem()
+    {
+        // early exit if no item is selected to avoid null reference exceptions
+        if (selectedItem == null)
+        {
+            Debug.LogWarning("No item selected for purchase.");
+            return;
+        }
+
+        // calculate the remaining gold after buying the item
+        int remainingGold = GameManager.instance.CurrentGold - selectedItem.ItemValue;
+
+        if (remainingGold < 0)
+        {
+            Debug.LogWarning("Not enough gold to buy item: " + selectedItem.ItemName);
+            return;
+        }
+
+        // add the item to the player's inventory and update the gold amount in the Game Manager
+        GameManager.instance.AddItem(selectedItem.ItemName);
+        GameManager.instance.SetGold(remainingGold);
+
+        goldText.text = GameManager.instance.CurrentGold.ToString() + "g";
+    }
+
+    /// <summary>
+    /// This method is called when the player confirms the sale of a selected item from their inventory in the shop.
+    /// It calculates the gold to add from selling the item at half its value, rounded down to the nearest integer,
+    /// updates the player's gold balance in the Game Manager, removes the item from the player's inventory
+    /// </summary>
+    public void SellSelectedItem()
+    {
+        // early exit if no item is selected to avoid null reference exceptions
+        if (selectedItem == null)
+        {
+            Debug.LogWarning("No item selected for sale.");
+            return;
+        }
+        
+        // calculate the gold to add from selling the item at half its value, rounded down to the nearest integer
+        int goldToAdd = Mathf.FloorToInt(selectedItem.ItemValue * 0.5f);
+        GameManager.instance.AddGold(goldToAdd);
+        GameManager.instance.RemoveItem(selectedItem.ItemName);
+
+        // refresh the displayed gold amount and sell item buttons to reflect the updated player inventory and gold balance
+        goldText.text = GameManager.instance.CurrentGold.ToString() + "g";
+        ShowSellItemButtons();
+    }
+
+    /// <summary>
+    /// This method updates the sell item buttons in the shop's sell menu to reflect the player's current inventory.
+    /// </summary>
+    private void ShowSellItemButtons()
+    {
         // early exit if no sell item buttons are assigned to avoid null reference exceptions
         if (sellItemButtons == null || sellItemButtons.Length == 0)
         {
             Debug.LogWarning("No sell item buttons assigned in the shop.");
             return;
         }
-
-        // activate the sell menu and deactivate the buy menu
-        buyMenu.SetActive(false);
-        sellMenu.SetActive(true);
 
         GameManager gameMan = GameManager.instance;
     
@@ -172,62 +292,4 @@ public class Shop : MonoBehaviour
             sellItemButtons[i].SetItemImage(null);    
         }
     }
-    
-    // getters for shop properties
-    public string[] ItemsForSale => itemsForSale;
-    public GameObject ShopMenuUI => shopMenu;
-    public GameObject ShopBuyMenuUI => buyMenu;
-    public GameObject ShopSellMenuUI => sellMenu;
-    public bool IsOpen => shopMenu.activeInHierarchy;
-
-    /// <summary>
-    /// Replaces the shop's current inventory with a new set of items available for purchase.
-    /// Performs a shallow clone of <paramref name="newItems"/>, ensuring the internal
-    /// inventory is decoupled from the caller's array reference.
-    /// </summary>
-    /// <param name="newItems">
-    /// A non-null, non-empty string array of item identifiers to stock in the shop.
-    /// </param>
-    public void SetItemsForSale(string[] newItems)
-    {
-        if (newItems == null)
-        {
-            throw new ArgumentNullException(nameof(newItems), "Items for sale array cannot be null.");
-        }
-
-        if (newItems.Length == 0)
-        {
-            throw new ArgumentException("Items for sale array cannot be empty.", nameof(newItems));
-        }
-
-        itemsForSale = (string[])newItems.Clone();
-    }
-
-    /// <summary>
-    /// This method is called when the player selects an item from the shop's buy menu to view its details.
-    /// </summary>
-    /// <param name="item"></param>
-    public void SelectBuyItem(Item item)
-    {
-        selectedItem = item;
-        buyItemNameText.text = item.ItemName;
-        buyItemDescriptionText.text = item.ItemDescription;
-        buyItemValueText.text = "Value: " + item.ItemValue.ToString() + "g";
-    }
-
-    /// <summary>
-    /// This method is called when the player selects an item from their inventory to sell in the shop.
-    /// </summary>
-    /// <param name="item"></param>
-    public void SelectSellItem(Item item)
-    {
-        string itemValueText = Mathf.FloorToInt(item.ItemValue * 0.5f).ToString();
-
-        selectedItem = item;
-        sellItemNameText.text = item.ItemName;
-        sellItemDescriptionText.text = item.ItemDescription;
-        sellItemValueText.text = "Value: " + itemValueText + "g";
-    }
-
-
 }
