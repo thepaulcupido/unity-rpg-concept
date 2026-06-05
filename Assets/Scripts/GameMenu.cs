@@ -85,7 +85,7 @@ public class GameMenu : MonoBehaviour
                 slider[i].maxValue = playerStats[i].GetExpToNextLevel();
                 slider[i].value = playerStats[i].GetCurrentEXP();
 
-                currentGoldText.text = GameManager.instance.GetCurrentGold() +"g";
+                currentGoldText.text = GameManager.instance.CurrentGold.ToString() + "g";
 
                 characterStatsArray[i].SetActive(true);
             } 

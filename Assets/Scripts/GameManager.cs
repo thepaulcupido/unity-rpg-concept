@@ -74,11 +74,13 @@ public class GameManager : MonoBehaviour
     public void CloseShopMenu() => isShopActive = false;
 
     public void SetGold(int newGold) => currentGold = newGold;
+    public void RemoveGold(int goldToRemove) => currentGold -= goldToRemove;
+    public void AddGold(int goldToAdd) => currentGold += goldToAdd;
 
     // getters for game state properties
     public CharacterStats[] PlayerStats => playerStats;
     public int[] NumberOfItemsHeldByPlayer => numberOfItemsHeldByPlayer;
-    public int GetCurrentGold() => currentGold;
+    public int CurrentGold => currentGold;
 
     public string[] ItemsHeldByPlayer => itemsHeldByPlayer;
     public Item[] GetReferenceItems() => referenceItems;
