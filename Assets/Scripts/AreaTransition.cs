@@ -14,18 +14,16 @@ using UnityEngine;
 /// </summary>
 public class AreaTransition : MonoBehaviour
 {
-    /// <summary>
-    /// Unique identifier used to match exits and entrances between scenes.
-    /// </summary>
+
+    // Inspector-available fields
     [SerializeField] private string areaTransitionName = "1-1";
 
+    public string AreaTransitionName => areaTransitionName;
+
+    // TODO - write this setter in a modern way using C# properties and expression-bodied members
     public void SetAreaTransitionName(string newAreaTransitionName)
     {
         areaTransitionName = newAreaTransitionName;
     }
-
-    public string GetAreaTransitionName()
-    {
-        return areaTransitionName;
-    }
+    
 }
