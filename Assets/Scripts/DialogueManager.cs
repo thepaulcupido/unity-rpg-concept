@@ -7,17 +7,24 @@ using UnityEngine.UI;
 /// </summary>
 public class DialogueManager : MonoBehaviour
 {
-
-    private bool recentlyOpened = true;
-
+    //singleton instance
     public static DialogueManager instance;
 
+    //private variables
+    private bool recentlyOpened = true;
+    private string questToMark = null;
+    private bool markQuestComplete = false;
+    private bool shouldMarkQuest = false;
+
+    // inspector-available fields
+    [Header("Dialogue Settings")]
     [SerializeField] private int currentLineIndex = 0;
 
     [SerializeField] private Text dialogueText;
     [SerializeField] private Text speakerNameText;
     [SerializeField] private string[] dialogueLines;
 
+    [Header("Dialogue UI Settings")]
     [SerializeField] private GameObject dialogueUI;
     [SerializeField] private GameObject speakerNameUI;
 
@@ -55,6 +62,12 @@ public class DialogueManager : MonoBehaviour
                         currentLineIndex = 0;
                         dialogueUI.SetActive(false);
                         speakerNameUI.SetActive(false);
+
+                        if (shouldMarkQuest)
+                        {
+                            shouldMarkQuest = false;
+                            QuestManager.instance.UpdateQuestStatus(questToMark, markQuestComplete);
+                        }
                         
                         return;
                     }
@@ -131,5 +144,13 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueText.text = "";
         speakerNameText.text = "";
+    }
+
+    public void ShouldActivateQuestAtEndOfDialogue(string questName, bool markComplete)
+    {
+        questToMark = questName;
+        markQuestComplete = markComplete;
+
+        shouldMarkQuest = true;
     }
 }

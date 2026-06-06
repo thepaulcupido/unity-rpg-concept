@@ -1,21 +1,28 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
-/// This class is responsible for activating dialogue when the player interacts with certain game objects (such as NPCs or signs).
-/// It checks for player input and proximity to the game object, and if the conditions are met, it triggers the dialogue system to display the appropriate dialogue lines.
+/// This class is responsible for activating dialogue when the player interacts with certain game objects.
+/// It checks for player proximity and input to trigger the dialogue, and can also set up quest activation at the end of the dialogue if specified. The dialogue lines and speaker information can be configured in the Unity Inspector.
 /// </summary>
 public class DialogueActivator : MonoBehaviour
 {
-
+    // private variables
     private bool canActivate = false;
+
+    // inspector-available fields
+    [Header("Dialogue Activator Settings")]
     [SerializeField] private bool isPerson = true;
     [SerializeField] private string[] lines;
 
+    [Header("Quest Activation Settings")]
+    [SerializeField] private bool shouldActivateQuestAtEndOfDialogue;
+    [SerializeField] private string questToMark;
+    [SerializeField] private bool markQuestComplete;
+
 
     /// <summary>
-    /// In the Update method, we check if the player can activate the dialogue (i.e., they are in proximity to the game object and have pressed the "Fire1" button),
-    /// and if there are dialogue lines to display. We also check if the dialogue UI is not already active to prevent overlapping dialogues. If all conditions are met, we call the DisplayDialogue method of the DialogueManager to show the dialogue lines.
+    /// In the Update method, we check if the player can activate the dialogue based on proximity and input.
+    /// We then display the dialogue lines and set up quest activation if specified.
     /// </summary>
     void Update()
     {
@@ -26,6 +33,7 @@ public class DialogueActivator : MonoBehaviour
             !DialogueManager.instance.DialogueUI.activeInHierarchy
         ) {
             DialogueManager.instance.DisplayDialogue(lines, isPerson);
+            DialogueManager.instance.ShouldActivateQuestAtEndOfDialogue(questToMark, markQuestComplete);
         }
     }
 
