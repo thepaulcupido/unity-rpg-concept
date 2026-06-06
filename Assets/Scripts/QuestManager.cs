@@ -53,7 +53,7 @@ public class QuestManager : MonoBehaviour
     /// </summary>
     /// <param name="questName"></param>
     /// <param name="isComplete"></param>
-    private void UpdateQuestStatus(string questName, bool isComplete)
+    public void UpdateQuestStatus(string questName, bool isComplete)
     {
         for (int i = 0; i < questMarkerNames.Length; i++)
         {

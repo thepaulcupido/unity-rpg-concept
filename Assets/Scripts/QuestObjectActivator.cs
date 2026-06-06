@@ -18,6 +18,7 @@ public class QuestObject : MonoBehaviour
     {
         if (!initCheckDone)
         {
+            objectToActivate.SetActive(isActiveIfQuestCompleted);
             CheckQuestStatus();
             initCheckDone = true;
         }
