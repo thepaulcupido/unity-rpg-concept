@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 113a912e3f7de3d48a8808cc4be980c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterStats
-  characterName: Timmy-boy
+  characterName: Timmy
   characterLevel: 1
   characterHealth: 80
   characterMagic: 20
@@ -55,14 +55,14 @@ MonoBehaviour:
   weaponPower: 0
   armourPower: 0
   maxHealth: 100
-  maxMagic: 30
+  maxMagic: 40
   equippedWeapon: 
   equippedArmour: 
   characterImage: {fileID: 7152930139536384079, guid: a6b95ff178401474dbb4aaf01bc90024, type: 3}
   maxLevel: 100
   baseExperience: 1000
-  expToNextLevel: e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000
-  magicLevelBonusArray: 
+  expToNextLevel: 64000000c80000002c01000090010000f4010000f4010000f4010000f4010000f4010000f4010000
+  magicLevelBonusArray: 0100000001000000020000000300000005000000080000000d000000150000002200000037000000
 --- !u!1 &809846930429355972
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterStats
   characterName: Woody
   characterLevel: 3
-  characterHealth: 50
+  characterHealth: 120
   characterMagic: 25
   experiencePoints: 544
   gold: 0
@@ -185,9 +185,9 @@ MonoBehaviour:
   equippedWeapon: 
   equippedArmour: 
   characterImage: {fileID: 21300000, guid: e0ddba6d3fcf21f49949fcc95c849aac, type: 3}
-  maxLevel: 100
+  maxLevel: 10
   baseExperience: 1000
-  expToNextLevel: e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000
+  expToNextLevel: e8030000d0070000b80b0000b80b0000a00f00008813000070170000581b0000401f000028230000
   magicLevelBonusArray: 
 --- !u!1 &5310086974027061858
 GameObject:
@@ -199,6 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5819991415307926327}
   - component: {fileID: 652611898778967193}
+  - component: {fileID: 2117346117899092708}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -237,19 +238,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamaManager
   itemsHeldByPlayer:
-  - 
+  - Health Potion
   - Wooden Sword
+  - Health Potion
+  - 
+  - 
+  - Health Potion
   - Health Potion
   - 
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Mana Potion
   - 
   - Mana Potion
   - 
@@ -259,21 +260,21 @@ MonoBehaviour:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
   - Leather Armour
   - 
   - 
   - 
-  numberOfItemsHeldByPlayer: 00000000010000000a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Mana Potion
+  - Leather Armour
+  - Wooden Sword
+  - 
+  - 
+  numberOfItemsHeldByPlayer: 05000000010000000a000000000000000000000014000000020000000000000000000000000000000000000000000000640000000000000010000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000200000001000000010000000000000000000000
   referenceItems:
   - {fileID: 2668408539909205502, guid: 16116b4944f75924d85b8099305af555, type: 3}
   - {fileID: 8374495483973770556, guid: 3b585de40acfa7247a43b87d9df7ee73, type: 3}
@@ -281,11 +282,32 @@ MonoBehaviour:
   - {fileID: 2618470576438226532, guid: d67eb849156beb54ca13880cc7dd36ef, type: 3}
   - {fileID: 474680154161884362, guid: b22e7f4d2eae43c47afea4d364767a4b, type: 3}
   - {fileID: 2701492006167648337, guid: 91851be61115fb04da6e161b340981ce, type: 3}
+  currentGold: 0
   isGameMenuOpen: 0
   isDialogueActive: 0
   isMovingBetweenAreas: 0
+  isShopActive: 0
   playerStats:
   - {fileID: 250457246337121683}
   - {fileID: 146303231184986511}
   - {fileID: 2259478326029337400}
   itemNumberLimit: 999
+--- !u!114 &2117346117899092708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5310086974027061858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05b0018edd27e34cb61ccec0a5d0b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestManager
+  questMarkerCompleted: 0100000000
+  questMarkerNames:
+  - Talk to the girl
+  - Enter the cave
+  - Fight the monster
+  - Defeat the dragon
+  - Return to the girl
