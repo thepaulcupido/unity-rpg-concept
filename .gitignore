@@ -78,3 +78,4 @@ AGENTS.md
 *.lscache
 AGENTS.md
 /Assets/_Recovery
+*.meta
