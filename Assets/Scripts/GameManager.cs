@@ -1,19 +1,18 @@
 using UnityEngine;
 
 /// <summary>
-/// This class is responsible for managing the overall state of the game, including tracking whether the game menu is open, whether dialogue is active, and whether the player is moving between areas.
+/// This class is responsible for managing the overall state of the game, including player inventory, game state flags, and player stats.
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-
     public static GameManager instance;
 
+    // Inspector-available fields
     [Header ("Player Inventory")]
     [SerializeField] private string[] itemsHeldByPlayer;
     [SerializeField] private int[] numberOfItemsHeldByPlayer;
     [SerializeField] private Item[] referenceItems;
     [SerializeField] private int currentGold;
-
 
     [Header ("Game State")]
     [SerializeField] private bool isGameMenuOpen;
@@ -22,9 +21,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool isShopActive;
     [SerializeField] private CharacterStats[] playerStats;
 
+    // item number limit per slot for inventory management
     [SerializeField] private int itemNumberLimit = 999;
 
-    void Start()
+    /// <summary>
+    /// In the Awake method, we implement the singleton pattern to ensure that only one instance of the GameManager exists throughout the game.
+    /// </summary>
+    void Awake()
     {
         if (instance != null && instance != this)        
         {
@@ -51,12 +54,6 @@ public class GameManager : MonoBehaviour
         else
         {
             PlayerController.instance.EnableMovement();
-        }
-
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            AddItem("Mana Potion");
-            RemoveItem("Health Potion");
         }
     }
 
@@ -144,11 +141,12 @@ public class GameManager : MonoBehaviour
     /// <param name="itemToAdd"></param>
     public void AddItem(string itemToAdd)
     {
-        
+        // Check if the item exists in the referenceItems array
         for (int i = 0; i < referenceItems.Length; i++)
         {
             if (referenceItems[i].name == itemToAdd)
             {
+                // Item exists in reference items, now check if it's already held by the player
                 for (int j = 0; j < itemsHeldByPlayer.Length; j++)
                 {
                     if (itemsHeldByPlayer[j] == itemToAdd)
@@ -165,6 +163,7 @@ public class GameManager : MonoBehaviour
                     }
                 }
 
+                // Item is not currently held, find the first empty slot to add it
                 for (int j = 0; j < itemsHeldByPlayer.Length; j++)
                 {
                     if (itemsHeldByPlayer[j] == "")
@@ -175,9 +174,11 @@ public class GameManager : MonoBehaviour
                             return;
                         }
 
+                        // Add the item to the first empty slot
                         itemsHeldByPlayer[j] = itemToAdd;
                         numberOfItemsHeldByPlayer[j] = 1;
                         GameMenu.instance.ShowItemButtons();
+
                         return;
                     }
                 }
@@ -242,12 +243,14 @@ public class GameManager : MonoBehaviour
     /// <param name="newStats"></param>
     public void UpdatePlayerStats(CharacterStats[] newStats)
     {
+        // Return early if the newStats array does not match the length of the existing playerStats array
         if (newStats.Length != playerStats.Length)
         {
             Debug.LogError("The Player Stats Array parameter does not match the length of existing the Player Stats Array. Please review the variable passed to this function.");
             return;
         }
 
+        // Loop through each CharacterStats object in the newStats array and update the corresponding playerStats object with the new values
         for (int i = 0; i < newStats.Length; i++)
         {
             playerStats[i].SetCharacterHealth(newStats[i].GetCurrentHP());
